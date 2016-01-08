@@ -2,32 +2,30 @@ package v3.clientstrong;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
-import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
+import com.android.volley.VolleyLog;
+import com.android.volley.toolbox.JsonObjectRequest;
 
-import java.util.zip.Inflater;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
 
     @Override
-//    protected void onCreate(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
@@ -43,7 +41,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-//        View root = inflater.inflate(R.layout.content_main, container, false);
         ImageView imageView = (ImageView) findViewById(R.id.memberListIcon);
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -56,49 +53,62 @@ public class MainActivity extends AppCompatActivity {
 
         final TextView mTextView = (TextView) findViewById(R.id.text);
 
-        // Instantiate the RequestQueue.
-
-        RequestQueue queue = Volley.newRequestQueue(this);
         String url = "https://warm-refuge-4462.herokuapp.com/api/v1/members";
 
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                // Display the first 500 characters of the response string.
-                mTextView.setText("Success");
-            }
-        },
+        // pass second argument as "null" for GET requests
+//        JsonObjectRequest jsObjRequest = new JsonObjectRequest
+//                (Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
+//
+//                    @Override
+//                    public void onResponse(JSONObject response) {
+//                        mTextView.setText("Response: " + response.toString());
+//                    }
+//                }, new Response.ErrorListener() {
+//
+//                    @Override
+//                    public void onErrorResponse(VolleyError error) {
+//                        // TODO Auto-generated method stub
+//                        mTextView.setText("try again");
+//
+//                    }
+//                });
 
-            new Response.ErrorListener() {
+        HashMap<String, String> params = new HashMap<String, String>();
+        params.put("Content-Type", "application/json; charset=utf-8");
+
+        JsonObjectRequest req = new JsonObjectRequest(url, new JSONObject(params),
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        // handle response
+                        mTextView.setText("Response: " + response.toString());
+
+                    }
+                }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                mTextView.setText("That didn't work!");
+                // handle error
+                mTextView.setText("try again");
+
             }
-        });
+        }) {
 
-        queue.add(stringRequest);
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                HashMap<String, String> headers = new HashMap<String, String>();
+                headers.put("CUSTOM_HEADER", "Yahoo");
+                headers.put("ANOTHER_CUSTOM_HEADER", "Google");
+                return headers;
+            }
+        };
 
-    }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
 
-        return super.onOptionsItemSelected(item);
+
+
+// Access the RequestQueue through your singleton class.
+        MySingleton.getInstance(this).addToRequestQueue(req);
     }
 }
