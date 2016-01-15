@@ -14,11 +14,9 @@ import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.VolleyLog;
-import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.JsonArrayRequest;
 
-import org.json.JSONException;
-import org.json.JSONObject;
+import org.json.JSONArray;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -55,60 +53,34 @@ public class MainActivity extends AppCompatActivity {
 
         String url = "https://warm-refuge-4462.herokuapp.com/api/v1/members";
 
-        // pass second argument as "null" for GET requests
-//        JsonObjectRequest jsObjRequest = new JsonObjectRequest
-//                (Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
-//
-//                    @Override
-//                    public void onResponse(JSONObject response) {
-//                        mTextView.setText("Response: " + response.toString());
-//                    }
-//                }, new Response.ErrorListener() {
-//
-//                    @Override
-//                    public void onErrorResponse(VolleyError error) {
-//                        // TODO Auto-generated method stub
-//                        mTextView.setText("try again");
-//
-//                    }
-//                });
+        JsonArrayRequest jsObjRequest = new JsonArrayRequest
+                (Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
 
-        HashMap<String, String> params = new HashMap<String, String>();
-        params.put("Content-Type", "application/json; charset=utf-8");
-
-        JsonObjectRequest req = new JsonObjectRequest(url, new JSONObject(params),
-                new Response.Listener<JSONObject>() {
                     @Override
-                    public void onResponse(JSONObject response) {
-                        // handle response
+                    public void onResponse(JSONArray response) {
                         mTextView.setText("Response: " + response.toString());
-
                     }
                 }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                // handle error
-                mTextView.setText("try again");
 
-            }
-        }) {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        // TODO Auto-generated method stub
+                        mTextView.setText("Response: " + error.toString());
 
+                    }
+                }){
+
+            // Overrides header; necessary to set response type;
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
-                HashMap<String, String> headers = new HashMap<String, String>();
-                headers.put("CUSTOM_HEADER", "Yahoo");
-                headers.put("ANOTHER_CUSTOM_HEADER", "Google");
-                return headers;
+                Map<String, String>  params = new HashMap<>();
+                params.put("Accept", "application/json");
+
+                return params;
             }
         };
 
-
-
-
-
-
-
-// Access the RequestQueue through your singleton class.
-        MySingleton.getInstance(this).addToRequestQueue(req);
+        MySingleton.getInstance(this).addToRequestQueue(jsObjRequest);
     }
 }
+
