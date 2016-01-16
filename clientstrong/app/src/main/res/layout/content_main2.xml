@@ -9,6 +9,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
+    android:orientation="vertical"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="v3.clientstrong.Main2Activity"
     tools:showIn="@layout/activity_main2">
@@ -21,5 +22,17 @@
         android:textStyle="bold"
         android:textSize="48dp"
         android:text="Members list"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/first_name"
+        android:text="Aiste"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/lastname"
+        android:text="Ulozaite"/>
 
 </LinearLayout>

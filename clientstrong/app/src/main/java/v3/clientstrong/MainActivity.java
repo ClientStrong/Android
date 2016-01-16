@@ -162,7 +162,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         /**
-         * Processes GET with access_token request to get JSONArray;
+         * Processes GET with access_token request to get JSONObject;
          */
         ImageView getWithAccessRequest = (ImageView) findViewById(R.id.scheduleIcon);
 
