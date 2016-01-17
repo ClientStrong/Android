@@ -63,41 +63,49 @@ public class MainActivity extends AppCompatActivity {
         ImageView getRequest = (ImageView) findViewById(R.id.programListIcon);
 
         getRequest.setOnClickListener(new View.OnClickListener() {
+
+
+
+
+
             @Override
             public void onClick(View v) {
 
-                final TextView mTextView = (TextView) findViewById(R.id.text);
+                Intent intent = new Intent(getApplicationContext(), Main3Activity.class);
+                startActivity(intent);
 
-                String url = "https://warm-refuge-4462.herokuapp.com/api/v1/members";
-
-                JsonArrayRequest jsObjRequest = new JsonArrayRequest
-                        (Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
-
-                            @Override
-                            public void onResponse(JSONArray response) {
-                                mTextView.setText("Response: " + response.toString());
-                            }
-                        }, new Response.ErrorListener() {
-
-                            @Override
-                            public void onErrorResponse(VolleyError error) {
-                                // TODO Auto-generated method stub
-                                mTextView.setText("Response: " + error.toString());
-
-                            }
-                        }) {
-
-                    // Overrides header; necessary to set response type;
-                    @Override
-                    public Map<String, String> getHeaders() throws AuthFailureError {
-                        Map<String, String> params = new HashMap<>();
-                        params.put("Accept", "application/json");
-
-                        return params;
-                    }
-                };
-
-                MySingleton.getInstance(getApplicationContext()).addToRequestQueue(jsObjRequest);
+//                final TextView mTextView = (TextView) findViewById(R.id.text);
+//
+//                String url = "https://warm-refuge-4462.herokuapp.com/api/v1/members";
+//
+//                JsonArrayRequest jsObjRequest = new JsonArrayRequest
+//                        (Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
+//
+//                            @Override
+//                            public void onResponse(JSONArray response) {
+//                                mTextView.setText("Response: " + response.toString());
+//                            }
+//                        }, new Response.ErrorListener() {
+//
+//                            @Override
+//                            public void onErrorResponse(VolleyError error) {
+//                                // TODO Auto-generated method stub
+//                                mTextView.setText("Response: " + error.toString());
+//
+//                            }
+//                        }) {
+//
+//                    // Overrides header; necessary to set response type;
+//                    @Override
+//                    public Map<String, String> getHeaders() throws AuthFailureError {
+//                        Map<String, String> params = new HashMap<>();
+//                        params.put("Accept", "application/json");
+//
+//                        return params;
+//                    }
+//                };
+//
+//                MySingleton.getInstance(getApplicationContext()).addToRequestQueue(jsObjRequest);
             }
         });
 
