@@ -21,12 +21,12 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Main2Activity extends AppCompatActivity {
+public class MemberProfile extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main2);
+        setContentView(R.layout.member_profile);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -88,6 +88,6 @@ public class Main2Activity extends AppCompatActivity {
             }
         };
 
-        MySingleton.getInstance(getApplicationContext()).addToRequestQueue(jsObjRequest);
+        RequestManager.getInstance(getApplicationContext()).addToRequestQueue(jsObjRequest);
     }
 }

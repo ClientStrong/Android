@@ -10,8 +10,8 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="v3.clientstrong.Main3Activity"
-    tools:showIn="@layout/activity_main3">
+    tools:context=".MembersList"
+    tools:showIn="@layout/members_list">
 
     <TextView
         android:layout_width="wrap_content"

@@ -14,21 +14,19 @@ import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
 
-import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class MainActivity extends AppCompatActivity {
+public class Dashboard extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.dashboard);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -45,13 +43,12 @@ public class MainActivity extends AppCompatActivity {
         /**
          * Opens up new Main Activity;
          */
-
         ImageView newActivity = (ImageView) findViewById(R.id.memberListIcon);
         newActivity.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                Intent intent = new Intent(getApplicationContext(), Main2Activity.class);
+                Intent intent = new Intent(getApplicationContext(), MemberProfile.class);
                 startActivity(intent);
             }
         });
@@ -60,66 +57,28 @@ public class MainActivity extends AppCompatActivity {
         /**
          * Processes GET request to get JSONArray;
          */
-        ImageView getRequest = (ImageView) findViewById(R.id.programListIcon);
+        ImageView allMembersList = (ImageView) findViewById(R.id.programListIcon);
 
-        getRequest.setOnClickListener(new View.OnClickListener() {
-
-
-
-
+        allMembersList.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
 
-                Intent intent = new Intent(getApplicationContext(), Main3Activity.class);
+                Intent intent = new Intent(getApplicationContext(), MembersList.class);
                 startActivity(intent);
-
-//                final TextView mTextView = (TextView) findViewById(R.id.text);
-//
-//                String url = "https://warm-refuge-4462.herokuapp.com/api/v1/members";
-//
-//                JsonArrayRequest jsObjRequest = new JsonArrayRequest
-//                        (Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
-//
-//                            @Override
-//                            public void onResponse(JSONArray response) {
-//                                mTextView.setText("Response: " + response.toString());
-//                            }
-//                        }, new Response.ErrorListener() {
-//
-//                            @Override
-//                            public void onErrorResponse(VolleyError error) {
-//                                // TODO Auto-generated method stub
-//                                mTextView.setText("Response: " + error.toString());
-//
-//                            }
-//                        }) {
-//
-//                    // Overrides header; necessary to set response type;
-//                    @Override
-//                    public Map<String, String> getHeaders() throws AuthFailureError {
-//                        Map<String, String> params = new HashMap<>();
-//                        params.put("Accept", "application/json");
-//
-//                        return params;
-//                    }
-//                };
-//
-//                MySingleton.getInstance(getApplicationContext()).addToRequestQueue(jsObjRequest);
             }
         });
 
         /**
          * Processes POST request to get JSONArray;
          */
-        ImageView postRequest = (ImageView) findViewById(R.id.invoiceIcon);
+        ImageView createNewMembers = (ImageView) findViewById(R.id.invoiceIcon);
 
-        postRequest.setOnClickListener(new View.OnClickListener() {
+        createNewMembers.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 final TextView mTextView = (TextView) findViewById(R.id.text);
-
 
                 String url = "https://warm-refuge-4462.herokuapp.com/api/v1/members";
 
@@ -165,7 +124,7 @@ public class MainActivity extends AppCompatActivity {
                     }
                 };
 
-                MySingleton.getInstance(getApplicationContext()).addToRequestQueue(jsObjRequest);
+                RequestManager.getInstance(getApplicationContext()).addToRequestQueue(jsObjRequest);
             }
         });
 
@@ -211,7 +170,7 @@ public class MainActivity extends AppCompatActivity {
                     }
                 };
 
-                MySingleton.getInstance(getApplicationContext()).addToRequestQueue(jsObjRequest);
+                RequestManager.getInstance(getApplicationContext()).addToRequestQueue(jsObjRequest);
             }
         });
     }

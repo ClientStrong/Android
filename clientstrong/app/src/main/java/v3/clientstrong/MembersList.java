@@ -25,13 +25,11 @@ import com.google.gson.reflect.TypeToken;
 import org.json.JSONArray;
 
 import java.lang.reflect.Type;
-import java.sql.Wrapper;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
-public class Main3Activity extends AppCompatActivity {
+public class MembersList extends AppCompatActivity {
 
     private static ArrayList<Member> arrayOfUsers = new ArrayList<Member>();
 
@@ -39,7 +37,7 @@ public class Main3Activity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main3);
+        setContentView(R.layout.members_list);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -111,7 +109,7 @@ public class Main3Activity extends AppCompatActivity {
             }
         };
 
-        MySingleton.getInstance(getApplicationContext()).addToRequestQueue(jsObjRequest);
+        RequestManager.getInstance(getApplicationContext()).addToRequestQueue(jsObjRequest);
     }
 
     public void populateMemberList() {
