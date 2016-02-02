@@ -51,10 +51,6 @@ public class MembersList extends AppCompatActivity {
         });
 
         requestMemberList();
-
-
-
-
     }
 
 
