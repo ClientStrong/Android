@@ -13,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -179,6 +180,7 @@ public class Members extends Fragment {
             Member member = memberList.get(i);
             memberViewHolder.firstName.setText(member.first_name);
             memberViewHolder.email.setText(member.email);
+            memberViewHolder.image.setImageResource(R.drawable.ic_action_emo_cool);
         }
 
         @Override
@@ -190,19 +192,19 @@ public class Members extends Fragment {
             return new MemberViewHolder(itemView);
         }
 
-
         public class MemberViewHolder extends RecyclerView.ViewHolder {
             protected TextView firstName;
             protected TextView email;
+            protected ImageView image;
 
             public MemberViewHolder(View v) {
                 super(v);
                 firstName =  (TextView) v.findViewById(R.id.first_name_list);
                 email = (TextView)  v.findViewById(R.id.email_list);
+                image = (ImageView) v.findViewById(R.id.image);
             }
         }
     }
-
 
     public void populateMemberList() {
         MembersAdapter adapter = new MembersAdapter(arrayOfUsers);
