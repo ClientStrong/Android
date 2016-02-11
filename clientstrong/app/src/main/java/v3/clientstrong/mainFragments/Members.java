@@ -5,7 +5,9 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.ListViewCompat;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -27,6 +29,7 @@ import org.json.JSONArray;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import v3.clientstrong.R;
@@ -41,71 +44,46 @@ import v3.clientstrong.RequestManager;
  * create an instance of this fragment.
  */
 public class Members extends Fragment {
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
-    private static ListViewCompat listView;
-
+    private static RecyclerView mMembersListView;
     private static ArrayList<Member> arrayOfUsers = new ArrayList<>();
 
 
     private OnFragmentInteractionListener mListener;
 
-//    public Members() {
-//        // Required empty public constructor
-//    }
-
     /**
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
-     *
-
      * @return A new instance of fragment Members.
      */
-    // TODO: Rename and change types and number of parameters
     public static Members newInstance() {
-//    public static Members newInstance(String param1, String param2) {
         Members fragment = new Members();
-//        Bundle args = new Bundle();
-//        args.putString(ARG_PARAM1, param1);
-//        args.putString(ARG_PARAM2, param2);
-//        fragment.setArguments(args);
         return fragment;
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        if (getArguments() != null) {
-//            mParam1 = getArguments().getString(ARG_PARAM1);
-//            mParam2 = getArguments().getString(ARG_PARAM2);
-//        }
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+
         View root = inflater.inflate(R.layout.fragment_members, container, false);
-        listView = (ListViewCompat) root.findViewById(R.id.members_list);
+        mMembersListView = (RecyclerView) root.findViewById(R.id.members_list);
 
-//        listView = root.findViewById(R.id.members_list);
-
+        mMembersListView.setHasFixedSize(true);
+        LinearLayoutManager llm = new LinearLayoutManager(getActivity());
+        llm.setOrientation(LinearLayoutManager.VERTICAL);
+        mMembersListView.setLayoutManager(llm);
 
         requestMemberList();
+
         return root;
-
-
     }
 
     // Server request to receive member list.
-
     public void requestMemberList() {
 
         /**
@@ -127,11 +105,7 @@ public class Members extends Fragment {
 
                         ArrayList<Member> myModelList = gson.fromJson(jsonArray.toString(), listType);
 
-
                         arrayOfUsers = myModelList;
-
-
-
 
                         populateMemberList();
 
@@ -165,6 +139,8 @@ public class Members extends Fragment {
         }
     }
 
+    // MODEL
+
     public class Member {
         public String email;
         public String password;
@@ -185,34 +161,52 @@ public class Members extends Fragment {
         }
     }
 
-    public class MembersAdapter extends ArrayAdapter<Member> {
-        public MembersAdapter(Context context, ArrayList<Member> members) {
-            super(context, 0, members);
+    public class MembersAdapter extends RecyclerView.Adapter<MembersAdapter.MemberViewHolder> {
+
+        private List<Member> memberList;
+
+        public MembersAdapter(List<Member> memberList) {
+            this.memberList = memberList;
         }
 
         @Override
-        public View getView(int position, View convertView, ViewGroup parent) {
-            // Get the data item for this position
-            Member member = getItem(position);
-            // Check if an existing view is being reused, otherwise inflate the view
-            if (convertView == null) {
-                convertView = LayoutInflater.from(getContext()).inflate(R.layout.member_cell, parent, false);
+        public int getItemCount() {
+            return memberList.size();
+        }
+
+        @Override
+        public void onBindViewHolder(MemberViewHolder memberViewHolder, int i) {
+            Member member = memberList.get(i);
+            memberViewHolder.firstName.setText(member.first_name);
+            memberViewHolder.email.setText(member.email);
+        }
+
+        @Override
+        public MemberViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
+            View itemView = LayoutInflater.
+                    from(viewGroup.getContext()).
+                    inflate(R.layout.member_cell, viewGroup, false);
+
+            return new MemberViewHolder(itemView);
+        }
+
+
+        public class MemberViewHolder extends RecyclerView.ViewHolder {
+            protected TextView firstName;
+            protected TextView email;
+
+            public MemberViewHolder(View v) {
+                super(v);
+                firstName =  (TextView) v.findViewById(R.id.first_name_list);
+                email = (TextView)  v.findViewById(R.id.email_list);
             }
-            // Lookup view for data population
-            TextView tvName = (TextView) convertView.findViewById(R.id.first_name_list);
-            TextView tvHome = (TextView) convertView.findViewById(R.id.email_list);
-            // Populate the data into the template view using the data object
-            tvName.setText(member.first_name);
-            tvHome.setText(member.email);
-            // Return the completed view to render on screen
-            return convertView;
         }
     }
 
+
     public void populateMemberList() {
-        MembersAdapter adapter = new MembersAdapter(getActivity(), arrayOfUsers);
-//        ListView listView = (ListView) getActivity().findViewById(R.id.members_list);
-        listView.setAdapter(adapter);
+        MembersAdapter adapter = new MembersAdapter(arrayOfUsers);
+        mMembersListView.setAdapter(adapter);
     }
 
 
