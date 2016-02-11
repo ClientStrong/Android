@@ -2,6 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorAccent"
     tools:context="v3.clientstrong.mainFragments.Members">
 
     <!-- TODO: Update blank fragment layout -->
@@ -9,5 +10,15 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:text="@string/hello_blank_fragment" />
+
+    <android.support.v7.widget.ListViewCompat
+        android:id="@+id/members_list"
+        android:background="@color/colorPrimary"
+        android:textAlignment="gravity"
+        android:gravity="center_horizontal|center_vertical"
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="Members List"/>
 
 </FrameLayout>
