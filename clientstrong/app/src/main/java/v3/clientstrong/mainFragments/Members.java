@@ -16,6 +16,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -181,6 +182,7 @@ public class Members extends Fragment {
             memberViewHolder.firstName.setText(member.first_name);
             memberViewHolder.email.setText(member.email);
             memberViewHolder.image.setImageResource(R.drawable.ic_action_emo_cool);
+            memberViewHolder.setItem(memberList.get(i).toString());
         }
 
         @Override
@@ -192,16 +194,29 @@ public class Members extends Fragment {
             return new MemberViewHolder(itemView);
         }
 
-        public class MemberViewHolder extends RecyclerView.ViewHolder {
+        public class MemberViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
             protected TextView firstName;
             protected TextView email;
             protected ImageView image;
+            private String mItem;
 
             public MemberViewHolder(View v) {
                 super(v);
+                v.setOnClickListener(this);
                 firstName =  (TextView) v.findViewById(R.id.first_name_list);
                 email = (TextView)  v.findViewById(R.id.email_list);
                 image = (ImageView) v.findViewById(R.id.image);
+            }
+
+            public void setItem(String item){
+                mItem = item;
+            }
+
+            @Override
+            public void onClick(View v) {
+                int itemPosition = mMembersListView.getChildPosition(v);
+                Member item = memberList.get(itemPosition);
+                Toast.makeText(getActivity(), "hello", Toast.LENGTH_LONG).show();
             }
         }
     }
