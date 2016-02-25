@@ -51,7 +51,7 @@ public class MemberProfile extends Fragment {
 
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            id = getArguments().getString(ARG_ID);
+            id = getArguments().getString("id");
         }
     }
 
@@ -76,19 +76,19 @@ public class MemberProfile extends Fragment {
         lastName = (TextView) root.findViewById(R.id.lastname);
 
 
-        request();
+        request(id);
 
         return root;
     }
 
-    public void request() {
+    public void request(String id) {
 
 
 
         /**
          * Processes GET with access_token request to get JSONObject;
          */
-        String url = "https://warm-refuge-4462.herokuapp.com/api/v1/members/3";
+        String url = "https://warm-refuge-4462.herokuapp.com/api/v1/members/" + id;
 
         JsonObjectRequest jsObjRequest = new JsonObjectRequest
                 (Request.Method.GET, url, null, new Response.Listener<JSONObject>() {

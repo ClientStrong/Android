@@ -1,21 +1,16 @@
 package v3.clientstrong.mainFragments;
 
-import android.app.FragmentTransaction;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.ListViewCompat;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -146,6 +141,8 @@ public class Members extends Fragment {
     // MODEL
 
     public class Member {
+
+        public String id;
         public String email;
         public String password;
         public String first_name;
@@ -154,7 +151,8 @@ public class Members extends Fragment {
         public String mobile;
         public String birthday;
 
-        public Member(String email, String password, String first_name, String last_name, String address, String mobile, String birthday) {
+        public Member(String id, String email, String password, String first_name, String last_name, String address, String mobile, String birthday) {
+            this.id = id;
             this.email = email;
             this.password = password;
             this.first_name = first_name;
@@ -218,19 +216,12 @@ public class Members extends Fragment {
             public void onClick(View v) {
                 int itemPosition = mMembersListView.getChildPosition(v);
                 Member item = memberList.get(itemPosition);
-                Toast.makeText(getActivity(), "hello", Toast.LENGTH_LONG).show();
 
-//                / Create new fragment and transaction
-                Fragment newFragment = new MemberProfile();
-                FragmentTransaction transaction = getFragmentManager().beginTransaction();
-
-// Replace whatever is in the fragment_container view with this fragment,
-// and add the transaction to the back stack
-                transaction.replace(R.id.container, newFragment);
-                transaction.addToBackStack(null);
-
-// Commit the transaction
-                transaction.commit();
+                MemberProfile newFragment = new MemberProfile();
+                Bundle args = new Bundle();
+                args.putString("id", item.id);
+                newFragment.setArguments(args);
+                getActivity().getFragmentManager().beginTransaction().add(R.id.container, newFragment).commit();
             }
         }
     }
