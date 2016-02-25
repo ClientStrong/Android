@@ -1,5 +1,6 @@
 package v3.clientstrong.mainFragments;
 
+import android.app.FragmentTransaction;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
@@ -34,6 +35,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import v3.clientstrong.MemberProfile;
 import v3.clientstrong.R;
 import v3.clientstrong.RequestManager;
 
@@ -217,6 +219,18 @@ public class Members extends Fragment {
                 int itemPosition = mMembersListView.getChildPosition(v);
                 Member item = memberList.get(itemPosition);
                 Toast.makeText(getActivity(), "hello", Toast.LENGTH_LONG).show();
+
+//                / Create new fragment and transaction
+                Fragment newFragment = new MemberProfile();
+                FragmentTransaction transaction = getFragmentManager().beginTransaction();
+
+// Replace whatever is in the fragment_container view with this fragment,
+// and add the transaction to the back stack
+                transaction.replace(R.id.container, newFragment);
+                transaction.addToBackStack(null);
+
+// Commit the transaction
+                transaction.commit();
             }
         }
     }
