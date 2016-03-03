@@ -1,7 +1,5 @@
 package v3.clientstrong;
 
-import android.app.Dialog;
-import android.app.DialogFragment;
 import android.content.res.Configuration;
 import android.net.Uri;
 import android.os.Bundle;
@@ -54,15 +52,15 @@ public class Dashboard extends AppCompatActivity implements Members.OnFragmentIn
         setContentView(R.layout.dashboard);
         setTitle("Client Strong | Dashboard");
 
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar = (Toolbar) findViewById(R.id.htab_toolbar);
         setSupportActionBar(toolbar);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        viewPager = (ViewPager) findViewById(R.id.viewpager);
+        viewPager = (ViewPager) findViewById(R.id.htab_viewpager);
         setupViewPager(viewPager);
 
-        tabLayout = (TabLayout) findViewById(R.id.tabs);
+        tabLayout = (TabLayout) findViewById(R.id.htab_tabs);
         tabLayout.setupWithViewPager(viewPager);
 
         fab = (FloatingActionButton) findViewById(R.id.fab);

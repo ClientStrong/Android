@@ -12,7 +12,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -221,7 +220,7 @@ public class Members extends Fragment {
                 Bundle args = new Bundle();
                 args.putString("id", item.id);
                 newFragment.setArguments(args);
-                getActivity().getFragmentManager().beginTransaction().add(R.id.container, newFragment).commit();
+                getActivity().getFragmentManager().beginTransaction().add(R.id.htab_maincontent, newFragment).commit();
             }
         }
     }
