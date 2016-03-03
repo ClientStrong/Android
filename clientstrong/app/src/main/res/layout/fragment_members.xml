@@ -1,19 +1,13 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/dummyfrag_bg"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:background="@color/background_material_light">
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/members_list"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/colorPrimaryLight"
-        android:gravity="center_horizontal|center_vertical"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"
-        android:paddingEnd="16dp"
-        android:paddingStart="16dp"
-        android:paddingTop="8dp"
-        android:paddingBottom="8dp"
-        android:textAlignment="gravity"/>
+        android:layout_height="match_parent" />
 
-</LinearLayout>
+</FrameLayout>
