@@ -17,6 +17,7 @@ public class ProfileScreen extends AppCompatActivity {
         setContentView(R.layout.activity_profile_screen);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        setTitle("Member Profile");
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
