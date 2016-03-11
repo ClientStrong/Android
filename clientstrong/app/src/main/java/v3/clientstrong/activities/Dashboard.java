@@ -1,4 +1,4 @@
-package v3.clientstrong;
+package v3.clientstrong.activities;
 
 import android.content.res.Configuration;
 import android.net.Uri;
@@ -25,6 +25,7 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
+import v3.clientstrong.R;
 import v3.clientstrong.mainFragments.Invoices;
 import v3.clientstrong.mainFragments.Members;
 import v3.clientstrong.mainFragments.Schedule;

@@ -30,7 +30,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import v3.clientstrong.ProfileScreen;
+import v3.clientstrong.activities.ProfileScreen;
 import v3.clientstrong.R;
 import v3.clientstrong.RequestManager;
 
