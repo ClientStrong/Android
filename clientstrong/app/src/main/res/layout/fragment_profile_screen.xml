@@ -20,7 +20,6 @@
             android:id="@+id/textView"
             android:layout_width="match_parent"
             android:layout_height="200dp"
-            android:background="@color/colorAccent"
             android:text="Member profile"
             android:textColor="@color/colorPrimaryText"
             android:textSize="48dp"
@@ -29,14 +28,12 @@
         <TextView
             android:id="@+id/first_name"
             android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:background="@color/colorPrimary"/>
+            android:layout_height="200dp"/>
 
         <TextView
             android:id="@+id/lastname"
             android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:background="@color/colorSecondaryText"/>
+            android:layout_height="200dp"/>
 
     </LinearLayout>
 
