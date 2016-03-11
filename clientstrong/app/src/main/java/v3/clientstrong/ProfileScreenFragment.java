@@ -1,10 +1,8 @@
 package v3.clientstrong;
 
-import android.app.Fragment;
+import android.content.Intent;
+import android.support.v4.app.Fragment;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,60 +21,29 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
-public class MemberProfile extends Fragment {
+/**
+ * A placeholder fragment containing a simple view.
+ */
+public class ProfileScreenFragment extends Fragment {
 
     private TextView firstName;
     private TextView lastName;
     private String id;
-    private Toolbar toolbar;
 
-    private static final String ARG_ID = "ARG_ID";
-
-
-    public static MemberProfile newInstance(String id) {
-
-        MemberProfile fundFeedFragment = new MemberProfile();
-        fundFeedFragment.setArguments(newArgsBundle(id));
-        return fundFeedFragment;
-    }
-
-    public static Bundle newArgsBundle(String id) {
-
-        Bundle args = new Bundle();
-        args.putString(MemberProfile.ARG_ID, id);
-        return args;
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            id = getArguments().getString("id");
-        }
-
-//        getActivity().getSupportActionBar().show();
-//        setTitle("Member Profile");
+    public ProfileScreenFragment() {
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        View root = inflater.inflate(R.layout.member_profile, container, false);
-
-
-        FloatingActionButton fab = (FloatingActionButton) root.findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
+        View root = inflater.inflate(R.layout.fragment_profile_screen, container, false);
 
         firstName = (TextView) root.findViewById(R.id.first_name);
         lastName = (TextView) root.findViewById(R.id.lastname);
+
+        Intent intent = getActivity().getIntent();
+        id = intent.getStringExtra(Intent.EXTRA_TEXT);
 
         request(id);
 
@@ -84,7 +51,6 @@ public class MemberProfile extends Fragment {
     }
 
     public void request(String id) {
-
         /**
          * Processes GET with access_token request to get JSONObject;
          */
@@ -131,6 +97,6 @@ public class MemberProfile extends Fragment {
             }
         };
 
-//        RequestManager.getInstance(.addToRequestQueue(jsObjRequest);
+        RequestManager.getInstance(getActivity()).addToRequestQueue(jsObjRequest);
     }
 }

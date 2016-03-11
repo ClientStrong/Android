@@ -1,6 +1,7 @@
 package v3.clientstrong.mainFragments;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -29,7 +30,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import v3.clientstrong.MemberProfile;
+import v3.clientstrong.ProfileScreen;
 import v3.clientstrong.R;
 import v3.clientstrong.RequestManager;
 
@@ -62,6 +63,7 @@ public class Members extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
     }
 
     @Override
@@ -216,11 +218,16 @@ public class Members extends Fragment {
                 int itemPosition = mMembersListView.getChildPosition(v);
                 Member item = memberList.get(itemPosition);
 
-                MemberProfile newFragment = new MemberProfile();
-                Bundle args = new Bundle();
-                args.putString("id", item.id);
-                newFragment.setArguments(args);
-                getActivity().getFragmentManager().beginTransaction().add(R.id.htab_maincontent, newFragment).commit();
+                Intent intent = new Intent (getActivity(), ProfileScreen.class).putExtra(Intent.EXTRA_TEXT, item.id);
+                startActivity(intent);
+
+
+//                MemberProfile newFragment = new MemberProfile();
+//                Bundle args = new Bundle();
+//                args.putString("id", item.id);
+//                newFragment.setArguments(args);
+//                getActivity().getFragmentManager().beginTransaction().add(R.id.container, newFragment).addToBackStack(null).commit();
+//                getActivity().getFragmentManager().beginTransaction().add(R.id.container, newFragment).addToBackStack(null).commit();
             }
         }
     }
@@ -234,6 +241,7 @@ public class Members extends Fragment {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
+
         if (context instanceof OnFragmentInteractionListener) {
             mListener = (OnFragmentInteractionListener) context;
         } else {
