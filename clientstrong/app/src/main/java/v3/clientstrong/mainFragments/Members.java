@@ -1,20 +1,17 @@
 package v3.clientstrong.mainFragments;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.ListViewCompat;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.TextView;
 
 import com.android.volley.AuthFailureError;
@@ -33,6 +30,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import v3.clientstrong.activities.ProfileScreen;
 import v3.clientstrong.R;
 import v3.clientstrong.RequestManager;
 
@@ -65,6 +63,7 @@ public class Members extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
     }
 
     @Override
@@ -143,6 +142,8 @@ public class Members extends Fragment {
     // MODEL
 
     public class Member {
+
+        public String id;
         public String email;
         public String password;
         public String first_name;
@@ -151,7 +152,8 @@ public class Members extends Fragment {
         public String mobile;
         public String birthday;
 
-        public Member(String email, String password, String first_name, String last_name, String address, String mobile, String birthday) {
+        public Member(String id, String email, String password, String first_name, String last_name, String address, String mobile, String birthday) {
+            this.id = id;
             this.email = email;
             this.password = password;
             this.first_name = first_name;
@@ -181,6 +183,7 @@ public class Members extends Fragment {
             memberViewHolder.firstName.setText(member.first_name);
             memberViewHolder.email.setText(member.email);
             memberViewHolder.image.setImageResource(R.drawable.ic_action_emo_cool);
+            memberViewHolder.setItem(memberList.get(i).toString());
         }
 
         @Override
@@ -192,16 +195,39 @@ public class Members extends Fragment {
             return new MemberViewHolder(itemView);
         }
 
-        public class MemberViewHolder extends RecyclerView.ViewHolder {
+        public class MemberViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
             protected TextView firstName;
             protected TextView email;
             protected ImageView image;
+            private String mItem;
 
             public MemberViewHolder(View v) {
                 super(v);
+                v.setOnClickListener(this);
                 firstName =  (TextView) v.findViewById(R.id.first_name_list);
                 email = (TextView)  v.findViewById(R.id.email_list);
                 image = (ImageView) v.findViewById(R.id.image);
+            }
+
+            public void setItem(String item){
+                mItem = item;
+            }
+
+            @Override
+            public void onClick(View v) {
+                int itemPosition = mMembersListView.getChildPosition(v);
+                Member item = memberList.get(itemPosition);
+
+                Intent intent = new Intent (getActivity(), ProfileScreen.class).putExtra(Intent.EXTRA_TEXT, item.id);
+                startActivity(intent);
+
+
+//                MemberProfile newFragment = new MemberProfile();
+//                Bundle args = new Bundle();
+//                args.putString("id", item.id);
+//                newFragment.setArguments(args);
+//                getActivity().getFragmentManager().beginTransaction().add(R.id.container, newFragment).addToBackStack(null).commit();
+//                getActivity().getFragmentManager().beginTransaction().add(R.id.container, newFragment).addToBackStack(null).commit();
             }
         }
     }
@@ -215,6 +241,7 @@ public class Members extends Fragment {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
+
         if (context instanceof OnFragmentInteractionListener) {
             mListener = (OnFragmentInteractionListener) context;
         } else {

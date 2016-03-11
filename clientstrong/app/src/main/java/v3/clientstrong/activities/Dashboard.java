@@ -1,7 +1,5 @@
-package v3.clientstrong;
+package v3.clientstrong.activities;
 
-import android.app.Dialog;
-import android.app.DialogFragment;
 import android.content.res.Configuration;
 import android.net.Uri;
 import android.os.Bundle;
@@ -27,6 +25,7 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
+import v3.clientstrong.R;
 import v3.clientstrong.mainFragments.Invoices;
 import v3.clientstrong.mainFragments.Members;
 import v3.clientstrong.mainFragments.Schedule;
@@ -54,15 +53,15 @@ public class Dashboard extends AppCompatActivity implements Members.OnFragmentIn
         setContentView(R.layout.dashboard);
         setTitle("Client Strong | Dashboard");
 
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar = (Toolbar) findViewById(R.id.htab_toolbar);
         setSupportActionBar(toolbar);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        viewPager = (ViewPager) findViewById(R.id.viewpager);
+        viewPager = (ViewPager) findViewById(R.id.htab_viewpager);
         setupViewPager(viewPager);
 
-        tabLayout = (TabLayout) findViewById(R.id.tabs);
+        tabLayout = (TabLayout) findViewById(R.id.htab_tabs);
         tabLayout.setupWithViewPager(viewPager);
 
         fab = (FloatingActionButton) findViewById(R.id.fab);
@@ -77,7 +76,8 @@ public class Dashboard extends AppCompatActivity implements Members.OnFragmentIn
 
         // Navigation Drawer;
 
-        mDrawerList = (ListView)findViewById(R.id.navList);mDrawerLayout = (DrawerLayout)findViewById(R.id.drawer_layout);
+        mDrawerLayout = (DrawerLayout)findViewById(R.id.container);
+        mDrawerList = (ListView)findViewById(R.id.left_drawer);
         mActivityTitle = getTitle().toString();
 
         addDrawerItems();

@@ -1,12 +1,12 @@
 package v3.clientstrong;
 
+import android.content.Intent;
+import android.support.v4.app.Fragment;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.android.volley.AuthFailureError;
@@ -21,31 +21,40 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
-public class MemberProfile extends AppCompatActivity {
+/**
+ * A placeholder fragment containing a simple view.
+ */
+public class ProfileScreenFragment extends Fragment {
+
+    private TextView firstName;
+    private TextView lastName;
+    private String id;
+
+    public ProfileScreenFragment() {
+    }
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.member_profile);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
+        View root = inflater.inflate(R.layout.fragment_profile_screen, container, false);
 
-        final TextView firstName = (TextView) findViewById(R.id.first_name);
-        final TextView lastName = (TextView) findViewById(R.id.lastname);
+        firstName = (TextView) root.findViewById(R.id.first_name);
+        lastName = (TextView) root.findViewById(R.id.lastname);
 
+        Intent intent = getActivity().getIntent();
+        id = intent.getStringExtra(Intent.EXTRA_TEXT);
+
+        request(id);
+
+        return root;
+    }
+
+    public void request(String id) {
         /**
          * Processes GET with access_token request to get JSONObject;
          */
-        String url = "https://warm-refuge-4462.herokuapp.com/api/v1/members/3";
+        String url = "https://warm-refuge-4462.herokuapp.com/api/v1/members/" + id;
 
         JsonObjectRequest jsObjRequest = new JsonObjectRequest
                 (Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
@@ -88,6 +97,6 @@ public class MemberProfile extends AppCompatActivity {
             }
         };
 
-        RequestManager.getInstance(getApplicationContext()).addToRequestQueue(jsObjRequest);
+        RequestManager.getInstance(getActivity()).addToRequestQueue(jsObjRequest);
     }
 }

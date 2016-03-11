@@ -11,7 +11,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".Dashboard"
+            android:name=".activities.Dashboard"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
@@ -23,10 +23,20 @@
         <activity
             android:name=".MemberProfile"
             android:label="@string/title_activity_main2"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".MembersList"
             android:label="@string/title_activity_main3"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".activities.ProfileScreen"
+            android:label="@string/title_activity_profile_screen"
+            android:parentActivityName=".activities.Dashboard"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activities.Dashboard" />
+        </activity>
     </application>
+
 </manifest>
