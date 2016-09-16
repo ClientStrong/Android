@@ -1,8 +1,8 @@
 package v3.clientstrong;
 
 import android.content.Intent;
-import android.support.v4.app.Fragment;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,6 +20,8 @@ import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.Map;
+
+import v3.clientstrong.requests.RequestManager;
 
 /**
  * A placeholder fragment containing a simple view.
