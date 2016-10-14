@@ -1,39 +1,65 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/card_view"
     android:layout_width="match_parent"
     android:layout_height="72dp"
-    android:layout_marginBottom="8dp"
-    android:background="@color/colorPrimaryLight">
+    card_view:cardCornerRadius="4dp">
 
-    <ImageView
-        android:id="@+id/image"
-        android:backgroundTint="@color/colorAccent"
-        android:layout_width="72dp"
-        android:layout_height="72dp" />
-
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_toEndOf="@id/image"
-        android:orientation="vertical"
-        android:layout_marginStart="16dp"
-        android:gravity="center_vertical"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp">
+
+        <ImageView
+            android:id="@+id/profile_image"
+            android:layout_width="54dp"
+            android:layout_height="54dp"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="16dp"
+            android:background="@drawable/ic_person"
+            android:backgroundTint="@color/colorAccent"
+            tools:targetApi="lollipop" />
 
         <TextView
+            android:id="@+id/first_name_list"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="20sp"
+            android:layout_marginStart="72dp"
+            android:paddingTop="4dp"
+            android:layout_alignParentStart="true"
             android:textColor="@color/colorPrimaryText"
-            android:id="@+id/first_name_list"/>
+            android:textSize="16sp"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="14sp"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="72dp"
+            android:paddingTop="4dp"
+            android:text="Last logged: 21/09/2015"
             android:textColor="@color/colorSecondaryText"
-            android:id="@+id/email_list"/>
+            android:layout_below="@id/first_name_list"/>
 
-    </LinearLayout>
 
-</RelativeLayout>
+
+
+        <ImageView
+            android:id="@+id/favorite"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_marginEnd="16dp"
+            android:layout_alignParentEnd="true"
+            android:background="@drawable/ic_star_border"
+            android:backgroundTint="@color/colorAccent"
+            tools:targetApi="lollipop" />
+    </RelativeLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@color/colorDivider"/>
+
+</android.support.v7.widget.CardView>
+    <!--</LinearLayout>-->

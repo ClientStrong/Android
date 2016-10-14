@@ -180,9 +180,7 @@ public class Members extends Fragment {
         @Override
         public void onBindViewHolder(MemberViewHolder memberViewHolder, int i) {
             Member member = memberList.get(i);
-            memberViewHolder.firstName.setText(member.first_name);
-            memberViewHolder.email.setText(member.email);
-            memberViewHolder.image.setImageResource(R.drawable.ic_action_emo_cool);
+            memberViewHolder.fullName.setText(member.first_name + " " + member.last_name);
             memberViewHolder.setItem(memberList.get(i).toString());
         }
 
@@ -196,17 +194,15 @@ public class Members extends Fragment {
         }
 
         public class MemberViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-            protected TextView firstName;
-            protected TextView email;
+            protected TextView fullName;
             protected ImageView image;
             private String mItem;
 
             public MemberViewHolder(View v) {
                 super(v);
                 v.setOnClickListener(this);
-                firstName =  (TextView) v.findViewById(R.id.first_name_list);
-                email = (TextView)  v.findViewById(R.id.email_list);
-                image = (ImageView) v.findViewById(R.id.image);
+                fullName =  (TextView) v.findViewById(R.id.first_name_list);
+                image = (ImageView) v.findViewById(R.id.profile_image);
             }
 
             public void setItem(String item){

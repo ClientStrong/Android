@@ -51,12 +51,12 @@ public class Dashboard extends AppCompatActivity implements Members.OnFragmentIn
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.dashboard);
-        setTitle("Client Strong | Dashboard");
+//        setTitle("Client Strong | Dashboard");
+//
+//        toolbar = (Toolbar) findViewById(R.id.htab_toolbar);
+//        setSupportActionBar(toolbar);
 
-        toolbar = (Toolbar) findViewById(R.id.htab_toolbar);
-        setSupportActionBar(toolbar);
-
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+//        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         viewPager = (ViewPager) findViewById(R.id.htab_viewpager);
         setupViewPager(viewPager);
@@ -83,8 +83,8 @@ public class Dashboard extends AppCompatActivity implements Members.OnFragmentIn
         addDrawerItems();
         setupDrawer();
 
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setHomeButtonEnabled(true);
+//        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+//        getSupportActionBar().setHomeButtonEnabled(true);
     }
 
     private void addDrawerItems() {

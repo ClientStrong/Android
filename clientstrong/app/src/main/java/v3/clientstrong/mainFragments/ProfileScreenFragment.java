@@ -1,4 +1,4 @@
-package v3.clientstrong;
+package v3.clientstrong.mainFragments;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -21,6 +21,7 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
+import v3.clientstrong.R;
 import v3.clientstrong.requests.RequestManager;
 
 /**
