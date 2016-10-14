@@ -181,6 +181,7 @@ public class Members extends Fragment {
             Member member = memberList.get(i);
             memberViewHolder.fullName.setText(member.first_name + " " + member.last_name);
             memberViewHolder.setItem(memberList.get(i).toString());
+            memberViewHolder.letter.setText(String.valueOf(member.first_name.charAt(0)).toUpperCase());
         }
 
         @Override
@@ -194,14 +195,14 @@ public class Members extends Fragment {
 
         public class MemberViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
             protected TextView fullName;
-            protected TextView image;
+            protected TextView letter;
             private String mItem;
 
             public MemberViewHolder(View v) {
                 super(v);
                 v.setOnClickListener(this);
                 fullName =  (TextView) v.findViewById(R.id.first_name_list);
-                image = (TextView) v.findViewById(R.id.profile_image);
+                letter = (TextView) v.findViewById(R.id.profile_image);
             }
 
             public void setItem(String item){
@@ -215,14 +216,6 @@ public class Members extends Fragment {
 
                 Intent intent = new Intent (getActivity(), ProfileScreen.class).putExtra(Intent.EXTRA_TEXT, item.id);
                 startActivity(intent);
-
-
-//                MemberProfile newFragment = new MemberProfile();
-//                Bundle args = new Bundle();
-//                args.putString("id", item.id);
-//                newFragment.setArguments(args);
-//                getActivity().getFragmentManager().beginTransaction().add(R.id.container, newFragment).addToBackStack(null).commit();
-//                getActivity().getFragmentManager().beginTransaction().add(R.id.container, newFragment).addToBackStack(null).commit();
             }
         }
     }
