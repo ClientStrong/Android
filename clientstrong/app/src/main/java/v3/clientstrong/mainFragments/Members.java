@@ -11,7 +11,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.android.volley.AuthFailureError;
@@ -195,14 +194,14 @@ public class Members extends Fragment {
 
         public class MemberViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
             protected TextView fullName;
-            protected ImageView image;
+            protected TextView image;
             private String mItem;
 
             public MemberViewHolder(View v) {
                 super(v);
                 v.setOnClickListener(this);
                 fullName =  (TextView) v.findViewById(R.id.first_name_list);
-                image = (ImageView) v.findViewById(R.id.profile_image);
+                image = (TextView) v.findViewById(R.id.profile_image);
             }
 
             public void setItem(String item){

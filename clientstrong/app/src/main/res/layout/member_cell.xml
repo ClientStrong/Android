@@ -6,6 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="72dp"
     card_view:cardCornerRadius="4dp">
+    <!--android:background="@drawable/ic_person"-->
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -13,14 +14,18 @@
         android:paddingTop="8dp"
         android:paddingBottom="8dp">
 
-        <ImageView
+        <TextView
             android:id="@+id/profile_image"
-            android:layout_width="54dp"
-            android:layout_height="54dp"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:text="C"
+            android:textColor="@color/colorTextIcons"
+            android:textSize="40sp"
+            android:textAlignment="center"
             android:layout_alignParentStart="true"
             android:layout_marginStart="16dp"
-            android:background="@drawable/ic_person"
-            android:backgroundTint="@color/colorAccent"
+            android:layout_marginEnd="16dp"
+            android:background="@drawable/ic_profile_image_default"
             tools:targetApi="lollipop" />
 
         <TextView
@@ -29,6 +34,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="72dp"
             android:paddingTop="4dp"
+            android:paddingStart="16dp"
             android:layout_alignParentStart="true"
             android:textColor="@color/colorPrimaryText"
             android:textSize="16sp"/>
@@ -38,7 +44,8 @@
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
             android:layout_marginStart="72dp"
-            android:paddingTop="4dp"
+            android:paddingTop="4dp"            android:paddingStart="16dp"
+
             android:text="Last logged: 21/09/2015"
             android:textColor="@color/colorSecondaryText"
             android:layout_below="@id/first_name_list"/>
