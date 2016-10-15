@@ -46,7 +46,7 @@ public class Members extends Fragment {
 
     private static RecyclerView mMembersListView;
     private static ArrayList<Member> arrayOfUsers = new ArrayList<>();
-
+    private boolean mFavorite = false;
 
     private OnFragmentInteractionListener mListener;
 
@@ -180,10 +180,19 @@ public class Members extends Fragment {
         @Override
         public void onBindViewHolder(MemberViewHolder memberViewHolder, int i) {
             Member member = memberList.get(i);
-            memberViewHolder.firstName.setText(member.first_name);
-            memberViewHolder.email.setText(member.email);
-            memberViewHolder.image.setImageResource(R.drawable.ic_action_emo_cool);
+            memberViewHolder.fullName.setText(member.first_name + " " + member.last_name);
             memberViewHolder.setItem(memberList.get(i).toString());
+            memberViewHolder.letter.setText(String.valueOf(member.first_name.charAt(0)).toUpperCase());
+
+            //TODO: refactor with setFavorite;
+            mFavorite = String.valueOf(member.first_name.charAt(0)).toUpperCase().equals("S");
+            if (mFavorite) {
+                mFavorite = true;
+                memberViewHolder.star.setBackground(getResources().getDrawable(R.drawable.ic_star));
+            } else {
+                mFavorite = false;
+                memberViewHolder.star.setBackground(getResources().getDrawable(R.drawable.ic_star_border));
+            }
         }
 
         @Override
@@ -196,17 +205,34 @@ public class Members extends Fragment {
         }
 
         public class MemberViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-            protected TextView firstName;
-            protected TextView email;
-            protected ImageView image;
+            TextView fullName;
+            TextView letter;
+            ImageView star;
+
             private String mItem;
 
             public MemberViewHolder(View v) {
                 super(v);
                 v.setOnClickListener(this);
-                firstName =  (TextView) v.findViewById(R.id.first_name_list);
-                email = (TextView)  v.findViewById(R.id.email_list);
-                image = (ImageView) v.findViewById(R.id.image);
+                fullName = (TextView) v.findViewById(R.id.first_name_list);
+                letter = (TextView) v.findViewById(R.id.profile_image);
+                star = (ImageView) v.findViewById(R.id.star);
+
+                star.setOnClickListener(new View.OnClickListener() {
+
+                    @Override
+                    public void onClick(View v) {
+                        //TODO: refactor with setFavorite;
+                        if (mFavorite) {
+                            mFavorite = false;
+                            star.setBackground(getResources().getDrawable(R.drawable.ic_star_border));
+                        } else {
+                            mFavorite = true;
+                            star.setBackground(getResources().getDrawable(R.drawable.ic_star));
+                        }
+                    }
+                });
+
             }
 
             public void setItem(String item){
@@ -220,14 +246,6 @@ public class Members extends Fragment {
 
                 Intent intent = new Intent (getActivity(), ProfileScreen.class).putExtra(Intent.EXTRA_TEXT, item.id);
                 startActivity(intent);
-
-
-//                MemberProfile newFragment = new MemberProfile();
-//                Bundle args = new Bundle();
-//                args.putString("id", item.id);
-//                newFragment.setArguments(args);
-//                getActivity().getFragmentManager().beginTransaction().add(R.id.container, newFragment).addToBackStack(null).commit();
-//                getActivity().getFragmentManager().beginTransaction().add(R.id.container, newFragment).addToBackStack(null).commit();
             }
         }
     }
