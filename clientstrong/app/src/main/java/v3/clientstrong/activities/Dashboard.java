@@ -61,6 +61,37 @@ public class Dashboard extends AppCompatActivity implements Members.OnFragmentIn
         viewPager = (ViewPager) findViewById(R.id.htab_viewpager);
         setupViewPager(viewPager);
 
+        viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                switch (position) {
+                    case 0:
+                        fab.show();
+                        break;
+                    case 1:
+                        fab.hide();
+                        break;
+                    default:
+                        fab.hide();
+                        break;
+                }
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
+
+
+
+
         tabLayout = (TabLayout) findViewById(R.id.htab_tabs);
         tabLayout.setupWithViewPager(viewPager);
 
@@ -85,6 +116,7 @@ public class Dashboard extends AppCompatActivity implements Members.OnFragmentIn
 
         getSupportActionBar().setHomeButtonEnabled(true);
     }
+
 
     private void addDrawerItems() {
         String[] osArray = { "Android", "iOS", "Windows", "OS X", "Linux" };
