@@ -13,12 +13,12 @@ import v3.clientstrong.R;
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link Invoices.OnFragmentInteractionListener} interface
+ * {@link Workouts.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link Invoices#newInstance} factory method to
+ * Use the {@link Workouts#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class Invoices extends Fragment {
+public class Workouts extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -30,7 +30,7 @@ public class Invoices extends Fragment {
 
     private OnFragmentInteractionListener mListener;
 
-    public Invoices() {
+    public Workouts() {
         // Required empty public constructor
     }
 
@@ -43,8 +43,8 @@ public class Invoices extends Fragment {
      * @return A new instance of fragment Invoices.
      */
     // TODO: Rename and change types and number of parameters
-    public static Invoices newInstance(String param1, String param2) {
-        Invoices fragment = new Invoices();
+    public static Workouts newInstance(String param1, String param2) {
+        Workouts fragment = new Workouts();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -65,7 +65,7 @@ public class Invoices extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_invoices, container, false);
+        return inflater.inflate(R.layout.fragment_blank, container, false);
     }
 
     // TODO: Rename method, update argument and hook method into UI event

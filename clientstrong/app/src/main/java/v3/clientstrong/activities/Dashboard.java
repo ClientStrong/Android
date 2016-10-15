@@ -26,11 +26,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import v3.clientstrong.R;
-import v3.clientstrong.mainFragments.Invoices;
+import v3.clientstrong.mainFragments.Workouts;
 import v3.clientstrong.mainFragments.Members;
-import v3.clientstrong.mainFragments.Schedule;
+import v3.clientstrong.mainFragments.Exercises;
 
-public class Dashboard extends AppCompatActivity implements Members.OnFragmentInteractionListener, Invoices.OnFragmentInteractionListener, Schedule.OnFragmentInteractionListener {
+public class Dashboard extends AppCompatActivity implements Members.OnFragmentInteractionListener, Workouts.OnFragmentInteractionListener, Exercises.OnFragmentInteractionListener {
 
     //    private Toolbar toolbar;
     private Toolbar toolbar;
@@ -51,7 +51,7 @@ public class Dashboard extends AppCompatActivity implements Members.OnFragmentIn
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.dashboard);
-        setTitle("Client Strong | Dashboard");
+        setTitle("Client Strong");
 
         toolbar = (Toolbar) findViewById(R.id.htab_toolbar);
         setSupportActionBar(toolbar);
@@ -60,6 +60,37 @@ public class Dashboard extends AppCompatActivity implements Members.OnFragmentIn
 
         viewPager = (ViewPager) findViewById(R.id.htab_viewpager);
         setupViewPager(viewPager);
+
+        viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                switch (position) {
+                    case 0:
+                        fab.show();
+                        break;
+                    case 1:
+                        fab.hide();
+                        break;
+                    default:
+                        fab.hide();
+                        break;
+                }
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
+
+
+
 
         tabLayout = (TabLayout) findViewById(R.id.htab_tabs);
         tabLayout.setupWithViewPager(viewPager);
@@ -83,9 +114,9 @@ public class Dashboard extends AppCompatActivity implements Members.OnFragmentIn
         addDrawerItems();
         setupDrawer();
 
-//        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-//        getSupportActionBar().setHomeButtonEnabled(true);
+        getSupportActionBar().setHomeButtonEnabled(true);
     }
+
 
     private void addDrawerItems() {
         String[] osArray = { "Android", "iOS", "Windows", "OS X", "Linux" };
@@ -165,8 +196,8 @@ public class Dashboard extends AppCompatActivity implements Members.OnFragmentIn
     private void setupViewPager(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
         adapter.addFragment(new Members(), "Members");
-        adapter.addFragment(new Invoices(), "Invoices");
-        adapter.addFragment(new Schedule(), "Schedule");
+        adapter.addFragment(new Workouts(), "Workouts");
+        adapter.addFragment(new Exercises(), "Exercises");
         viewPager.setAdapter(adapter);
     }
 
