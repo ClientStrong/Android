@@ -52,14 +52,14 @@
             android:textColor="@color/colorSecondaryText"/>
 
         <ImageView
-            android:id="@+id/favorite"
+            android:id="@+id/star"
             android:layout_width="36dp"
             android:layout_height="36dp"
             android:layout_alignParentEnd="true"
             android:layout_marginEnd="16dp"
-            android:background="@drawable/ic_star_border"
             android:backgroundTint="@color/colorAccent"
             tools:targetApi="lollipop" />
+
     </RelativeLayout>
 
     <View

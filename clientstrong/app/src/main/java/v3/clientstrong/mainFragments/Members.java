@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.android.volley.AuthFailureError;
@@ -45,7 +46,7 @@ public class Members extends Fragment {
 
     private static RecyclerView mMembersListView;
     private static ArrayList<Member> arrayOfUsers = new ArrayList<>();
-
+    private boolean mFavorite = false;
 
     private OnFragmentInteractionListener mListener;
 
@@ -182,6 +183,16 @@ public class Members extends Fragment {
             memberViewHolder.fullName.setText(member.first_name + " " + member.last_name);
             memberViewHolder.setItem(memberList.get(i).toString());
             memberViewHolder.letter.setText(String.valueOf(member.first_name.charAt(0)).toUpperCase());
+
+            //TODO: refactor with setFavorite;
+            mFavorite = String.valueOf(member.first_name.charAt(0)).toUpperCase().equals("S");
+            if (mFavorite) {
+                mFavorite = true;
+                memberViewHolder.star.setBackground(getResources().getDrawable(R.drawable.ic_star));
+            } else {
+                mFavorite = false;
+                memberViewHolder.star.setBackground(getResources().getDrawable(R.drawable.ic_star_border));
+            }
         }
 
         @Override
@@ -194,15 +205,34 @@ public class Members extends Fragment {
         }
 
         public class MemberViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-            protected TextView fullName;
-            protected TextView letter;
+            TextView fullName;
+            TextView letter;
+            ImageView star;
+
             private String mItem;
 
             public MemberViewHolder(View v) {
                 super(v);
                 v.setOnClickListener(this);
-                fullName =  (TextView) v.findViewById(R.id.first_name_list);
+                fullName = (TextView) v.findViewById(R.id.first_name_list);
                 letter = (TextView) v.findViewById(R.id.profile_image);
+                star = (ImageView) v.findViewById(R.id.star);
+
+                star.setOnClickListener(new View.OnClickListener() {
+
+                    @Override
+                    public void onClick(View v) {
+                        //TODO: refactor with setFavorite;
+                        if (mFavorite) {
+                            mFavorite = false;
+                            star.setBackground(getResources().getDrawable(R.drawable.ic_star_border));
+                        } else {
+                            mFavorite = true;
+                            star.setBackground(getResources().getDrawable(R.drawable.ic_star));
+                        }
+                    }
+                });
+
             }
 
             public void setItem(String item){
