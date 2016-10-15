@@ -51,12 +51,12 @@ public class Dashboard extends AppCompatActivity implements Members.OnFragmentIn
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.dashboard);
-//        setTitle("Client Strong | Dashboard");
-//
-//        toolbar = (Toolbar) findViewById(R.id.htab_toolbar);
-//        setSupportActionBar(toolbar);
+        setTitle("Client Strong | Dashboard");
 
-//        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        toolbar = (Toolbar) findViewById(R.id.htab_toolbar);
+        setSupportActionBar(toolbar);
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         viewPager = (ViewPager) findViewById(R.id.htab_viewpager);
         setupViewPager(viewPager);
