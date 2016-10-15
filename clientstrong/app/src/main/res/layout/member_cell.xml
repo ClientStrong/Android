@@ -4,41 +4,39 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/card_view"
     android:layout_width="match_parent"
+    android:layout_height="72dp"
     android:clickable="true"
     android:focusable="true"
-    android:background="?attr/selectableItemBackground"
-    android:layout_height="72dp"
     card_view:cardCornerRadius="4dp">
-    <!--android:background="@drawable/ic_person"-->
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:paddingTop="8dp"
-        android:paddingBottom="8dp">
+        android:background="@drawable/custom_bg"
+        android:paddingBottom="8dp"
+        android:paddingTop="8dp">
 
         <TextView
             android:id="@+id/profile_image"
             android:layout_width="56dp"
             android:layout_height="56dp"
-            android:text="C"
+            android:layout_alignParentStart="true"
+            android:layout_marginEnd="16dp"
+            android:layout_marginStart="16dp"
+            android:background="@drawable/ic_profile_image_default"
+            android:textAlignment="center"
             android:textColor="@color/colorTextIcons"
             android:textSize="40sp"
-            android:textAlignment="center"
-            android:layout_alignParentStart="true"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
-            android:background="@drawable/ic_profile_image_default"
             tools:targetApi="lollipop" />
 
         <TextView
             android:id="@+id/first_name_list"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="72dp"
-            android:paddingTop="4dp"
-            android:paddingStart="16dp"
             android:layout_alignParentStart="true"
+            android:layout_marginStart="72dp"
+            android:paddingStart="16dp"
+            android:paddingTop="4dp"
             android:textColor="@color/colorPrimaryText"
             android:textSize="16sp"/>
 
@@ -46,30 +44,27 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
+            android:layout_below="@id/first_name_list"
             android:layout_marginStart="72dp"
-            android:paddingTop="4dp"            android:paddingStart="16dp"
-
+            android:paddingStart="16dp"
+            android:paddingTop="4dp"
             android:text="Last logged: 21/09/2015"
-            android:textColor="@color/colorSecondaryText"
-            android:layout_below="@id/first_name_list"/>
-
-
-
+            android:textColor="@color/colorSecondaryText"/>
 
         <ImageView
             android:id="@+id/favorite"
             android:layout_width="36dp"
             android:layout_height="36dp"
-            android:layout_marginEnd="16dp"
             android:layout_alignParentEnd="true"
+            android:layout_marginEnd="16dp"
             android:background="@drawable/ic_star_border"
             android:backgroundTint="@color/colorAccent"
             tools:targetApi="lollipop" />
     </RelativeLayout>
+
     <View
         android:layout_width="match_parent"
         android:layout_height="2dp"
         android:background="@color/colorDivider"/>
 
 </android.support.v7.widget.CardView>
-    <!--</LinearLayout>-->
