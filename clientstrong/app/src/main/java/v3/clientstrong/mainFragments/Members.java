@@ -8,6 +8,7 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -204,7 +205,8 @@ public class Members extends Fragment {
             return new MemberViewHolder(itemView);
         }
 
-        public class MemberViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+        public class MemberViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener,
+                 View.OnCreateContextMenuListener {
             TextView fullName;
             TextView letter;
             ImageView star;
@@ -214,6 +216,7 @@ public class Members extends Fragment {
             public MemberViewHolder(View v) {
                 super(v);
                 v.setOnClickListener(this);
+                v.setOnCreateContextMenuListener(this);
                 fullName = (TextView) v.findViewById(R.id.first_name_list);
                 letter = (TextView) v.findViewById(R.id.profile_image);
                 star = (ImageView) v.findViewById(R.id.star);
@@ -232,7 +235,6 @@ public class Members extends Fragment {
                         }
                     }
                 });
-
             }
 
             public void setItem(String item){
@@ -246,6 +248,13 @@ public class Members extends Fragment {
 
                 Intent intent = new Intent (getActivity(), ProfileScreen.class).putExtra(Intent.EXTRA_TEXT, item.id);
                 startActivity(intent);
+            }
+
+            @Override
+            public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+                menu.setHeaderTitle("Select The Action");
+                menu.add(0, v.getId(), 0, "Call");//groupId, itemId, order, title
+                menu.add(0, v.getId(), 0, "SMS");
             }
         }
     }
