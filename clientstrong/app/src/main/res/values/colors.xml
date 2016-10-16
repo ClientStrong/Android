@@ -13,5 +13,8 @@
     <color name="colorTabBackgroundSelected">#78909C</color>
     <color name="colorTabBackgroundUnselected">#CFD8DC</color>
 
+    <color name="colorCircleImageBorder">#FFCFD8DC</color>
+
+
     <color name="colorRippleEffect">#78909C</color>
 </resources>
