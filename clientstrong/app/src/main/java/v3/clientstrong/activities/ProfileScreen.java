@@ -38,7 +38,10 @@ public class ProfileScreen extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
+
     }
+
+
 
     public static void expand(final View v) {
         v.measure(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
