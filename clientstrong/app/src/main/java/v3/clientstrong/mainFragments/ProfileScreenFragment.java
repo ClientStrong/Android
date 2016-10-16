@@ -42,8 +42,8 @@ public class ProfileScreenFragment extends Fragment {
 
         View root = inflater.inflate(R.layout.fragment_profile_screen, container, false);
 
-        firstName = (TextView) root.findViewById(R.id.first_name);
-        lastName = (TextView) root.findViewById(R.id.lastname);
+//        firstName = (TextView) root.findViewById(R.id.first_name);
+//        lastName = (TextView) root.findViewById(R.id.lastname);
 
         Intent intent = getActivity().getIntent();
         id = intent.getStringExtra(Intent.EXTRA_TEXT);
@@ -73,8 +73,8 @@ public class ProfileScreenFragment extends Fragment {
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
-                        firstName.setText(firstNameString);
-                        lastName.setText(lastNameString);
+//                        firstName.setText(firstNameString);
+//                        lastName.setText(lastNameString);
                         Log.i("Response OK", response.toString());
                     }
                 }, new Response.ErrorListener() {

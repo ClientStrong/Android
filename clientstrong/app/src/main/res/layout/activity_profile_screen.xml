@@ -10,7 +10,7 @@
     <android.support.design.widget.AppBarLayout
         android:id="@+id/app_bar_layout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="300dp"
         android:fitsSystemWindows="true"
         android:theme="@style/AppTheme.AppBarOverlay">
 
@@ -18,30 +18,57 @@
             android:id="@+id/collapsing_toolbar"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:layout_scrollFlags="scroll|exitUntilCollapsed"
-
+            android:fitsSystemWindows="true"
             app:contentScrim="?attr/colorPrimary"
-            app:expandedTitleMarginStart="48dp"
             app:expandedTitleMarginEnd="64dp"
-            android:fitsSystemWindows="true">
+            app:expandedTitleMarginStart="48dp"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
-            <ImageView
-                android:id="@+id/header_image"
+            <LinearLayout
+                android:orientation="vertical"
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:src="@drawable/jump"
-                android:adjustViewBounds="true"
-                android:scaleType="fitXY"
-                app:layout_collapseMode="parallax"
-                />
+                android:layout_height="wrap_content"
+                android:layout_marginTop="80dp"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/profile_image"
+                android:layout_width="112dp"
+                android:layout_height="112dp"
+                android:layout_gravity="center"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:src="@drawable/blank_bckg"
+                app:civ_border_color="@color/colorCircleImageBorder"
+                app:civ_border_width="2dp"/>
+
+            <TextView
+                android:textAlignment="center"
+                android:textColor="@color/colorPrimaryDark"
+                android:layout_marginTop="8dp"
+                android:textSize="24sp"
+                android:text="Jack Johnson"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+                <TextView
+                android:textAlignment="center"
+                android:textColor="@color/colorPrimaryLight"
+                android:layout_marginTop="8dp"
+                android:textSize="16sp"
+                android:text="Runner. Lawyer. 4 kids. Get strong."
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+            </LinearLayout>
 
             <android.support.v7.widget.Toolbar
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
-                app:popupTheme="@style/AppTheme.PopupOverlay"
-                android:titleTextColor="@color/colorAccent"
-                app:layout_collapseMode="pin"/>
+                android:layout_marginEnd="16dp"
+                app:layout_collapseMode="pin"
+                app:popupTheme="@style/AppTheme.PopupOverlay"/>
 
         </android.support.design.widget.CollapsingToolbarLayout>
 
