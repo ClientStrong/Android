@@ -18,12 +18,15 @@ import v3.clientstrong.R;
 
 public class ProfileScreen extends AppCompatActivity {
 
+    private FloatingActionButton fab;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile_screen);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-
+        fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab.hide();
 
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);

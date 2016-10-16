@@ -47,7 +47,7 @@
                 android:textAlignment="center"
                 android:textColor="@color/colorPrimaryDark"
                 android:layout_marginTop="8dp"
-                android:textSize="24dp"
+                android:textSize="24sp"
                 android:text="Jack Johnson"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
@@ -56,7 +56,7 @@
                 android:textAlignment="center"
                 android:textColor="@color/colorPrimaryLight"
                 android:layout_marginTop="8dp"
-                android:textSize="16dp"
+                android:textSize="16sp"
                 android:text="Runner. Lawyer. 4 kids. Get strong."
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
