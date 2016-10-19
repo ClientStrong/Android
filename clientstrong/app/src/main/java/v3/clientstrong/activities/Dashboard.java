@@ -13,12 +13,15 @@ import android.view.View;
 import v3.clientstrong.R;
 import v3.clientstrong.adapters.ViewPagerAdapter;
 import v3.clientstrong.mainFragments.Exercises;
-import v3.clientstrong.mainFragments.People;
+import v3.clientstrong.mainFragments.MembersListFragment;
 import v3.clientstrong.mainFragments.Workouts;
 
-public class Dashboard extends AppCompatActivity implements People.OnFragmentInteractionListener, Workouts.OnFragmentInteractionListener, Exercises.OnFragmentInteractionListener {
+public class Dashboard extends AppCompatActivity implements MembersListFragment.OnFragmentInteractionListener, Workouts.OnFragmentInteractionListener, Exercises.OnFragmentInteractionListener {
 
     private FloatingActionButton mFloatingActionButton;
+
+    @Override
+    public void onFragmentInteraction(Uri uri) { }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +41,14 @@ public class Dashboard extends AppCompatActivity implements People.OnFragmentInt
         tabLayout.setupWithViewPager(viewPager);
         viewPager.addOnPageChangeListener(mPageChangeListener);
         mFloatingActionButton.setOnClickListener(mFloatingActionButtonClickListener);
+    }
+
+    private void setupViewPager(ViewPager viewPager) {
+        ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
+        adapter.addFragment(new MembersListFragment(), "Members");
+        adapter.addFragment(new Workouts(), "Workouts");
+        adapter.addFragment(new Exercises(), "Exercises");
+        viewPager.setAdapter(adapter);
     }
 
     /*
@@ -76,15 +87,4 @@ public class Dashboard extends AppCompatActivity implements People.OnFragmentInt
         public void onPageScrollStateChanged(int state) {
         }
     };
-
-    private void setupViewPager(ViewPager viewPager) {
-        ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
-        adapter.addFragment(new People(), "Members");
-        adapter.addFragment(new Workouts(), "Workouts");
-        adapter.addFragment(new Exercises(), "Exercises");
-        viewPager.setAdapter(adapter);
-    }
-
-    @Override
-    public void onFragmentInteraction(Uri uri) { }
 }

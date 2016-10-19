@@ -14,15 +14,17 @@ public class Person {
     public String address;
     public String mobile;
     public String birthday;
+    public boolean favorite;
 
-    public Person(String id, String email, String password, String first_name, String last_name, String address, String mobile, String birthday) {
-        this.id = id;
-        this.email = email;
-        this.password = password;
-        this.first_name = first_name;
-        this.last_name = last_name;
-        this.address = address;
-        this.mobile = mobile;
-        this.birthday = birthday;
+    public String getFullName() {
+        return first_name + " " + last_name;
+    }
+
+    public String getFirstNameLetter() {
+        return String.valueOf(first_name.charAt(0)).toUpperCase();
+    }
+
+    public boolean isFavorite() {
+        return getFirstNameLetter().equals("S");
     }
 }
