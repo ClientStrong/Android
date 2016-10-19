@@ -10,4 +10,6 @@
     <string name="blank_fragment">Getting stronger</string>
     <string name="blank_fragment_subTitle">Module is under development.</string>
     <string name="title_activity_profile_screen">ProfileScreen</string>
+    <string name="app_title">Client Strong</string>
+    <string name="base_url">https://warm-refuge-4462.herokuapp.com/api/v1/%s</string>
 </resources>

@@ -38,6 +38,10 @@ public class RequestManager {
                 });
     }
 
+    public static String getBaseUrl() {
+        return "https://warm-refuge-4462.herokuapp.com/api/v1/";
+    }
+
     public static synchronized RequestManager getInstance(Context context) {
         if (mInstance == null) {
             mInstance = new RequestManager(context);
