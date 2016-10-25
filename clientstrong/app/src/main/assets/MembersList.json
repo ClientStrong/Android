@@ -1,0 +1,42 @@
+[{
+    "id": 1,
+    "email": "snow.white@clientstrong.com",
+    "password": "password",
+    "first_name": "Snow",
+    "last_name": "White",
+    "address": "Fairytale",
+    "mobile": "345-332-1233",
+    "birthday": "1902-01-01",
+    "api_key": "mVjDPcx1saL6ko4FR7UEaQtt",
+    "created_at": "2015-12-12T09:50:04.378Z",
+    "updated_at": "2015-12-12T09:50:04.378Z",
+    "roles": [
+      {
+        "id": 1
+      },
+      {
+        "id": 1
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "email": "dopey.dwarf@clientstrong.com",
+    "password": "password",
+    "first_name": "Dopey",
+    "last_name": "Dwarf",
+    "address": "Fairytale",
+    "mobile": "345-332-1233",
+    "birthday": "1902-01-01",
+    "api_key": "WxiVROiGwdKz6vABZKlJfAtt",
+    "created_at": "2015-12-12T09:50:04.410Z",
+    "updated_at": "2015-12-12T09:50:04.410Z",
+    "roles": [
+      {
+        "id": 3
+      },
+      {
+        "id": 3
+      }
+    ]
+  }]
