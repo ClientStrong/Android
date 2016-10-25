@@ -1,5 +1,7 @@
 package v3.clientstrong.mainFragments;
 
+import android.content.Context;
+import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -16,6 +18,9 @@ import com.google.gson.reflect.TypeToken;
 
 import org.json.JSONArray;
 
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.Reader;
 import java.util.ArrayList;
 
 import v3.clientstrong.R;
@@ -50,8 +55,23 @@ public class MembersListFragment extends Fragment {
         mMembersListView = (RecyclerView) root.findViewById(R.id.members_list);
         mMembersListView.setLayoutManager(new LinearLayoutManager(getActivity()));
         mMembersListView.setHasFixedSize(true);
-        requestMemberList("members");
+
+        if (isNetworkConnected())
+            requestMemberList("members");
+        else
+            try {
+                localRequestForFakeData();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
         return root;
+    }
+
+    private void localRequestForFakeData() throws IOException {
+        Reader reader = new InputStreamReader(getActivity().getAssets().open("MembersList.json"));
+        ArrayList<Member> peopleList = new Gson().fromJson(reader, new TypeToken<ArrayList<Member>>(){}.getType());
+        populateMemberList(peopleList);
     }
 
     public void requestMemberList(String endPoint) {
@@ -76,5 +96,10 @@ public class MembersListFragment extends Fragment {
     public void populateMemberList(ArrayList<Member> peopleList) {
         MembersListAdapter adapter = new MembersListAdapter(this, peopleList, mMembersListView);
         mMembersListView.setAdapter(adapter);
+    }
+
+    private boolean isNetworkConnected() {
+        ConnectivityManager connectivityManager = (ConnectivityManager) getContext().getSystemService(Context.CONNECTIVITY_SERVICE);
+        return connectivityManager.getActiveNetworkInfo() != null;
     }
 }

@@ -1,10 +1,12 @@
 package v3.clientstrong.models;
 
+import java.io.Serializable;
+
 /**
  * Created by runquest.
  * Date: 2016-10-18
  */
-public class Member {
+public class Member implements Serializable {
 
     public String id;
     public String email;
@@ -15,6 +17,7 @@ public class Member {
     public String mobile;
     public String birthday;
     public boolean favorite;
+
 
     public String getFullName() {
         return first_name + " " + last_name;
