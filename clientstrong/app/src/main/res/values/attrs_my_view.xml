@@ -1,0 +1,6 @@
+<resources>
+    <declare-styleable name="ProfileContactCard">
+        <attr name="pIcon" format="integer" />
+        <attr name="pContent" format="string" />
+    </declare-styleable>
+</resources>

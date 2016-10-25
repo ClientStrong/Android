@@ -16,7 +16,7 @@ import android.widget.Toast;
 
 import v3.clientstrong.R;
 
-public class ProfileScreen extends AppCompatActivity {
+public class MembersProfile extends AppCompatActivity {
 
     private FloatingActionButton fab;
 
@@ -105,7 +105,7 @@ public class ProfileScreen extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_profile_screen, menu);
+        getMenuInflater().inflate(R.menu.menu_contact_action, menu);
 
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
             Drawable email = getDrawable(R.drawable.ic_email);

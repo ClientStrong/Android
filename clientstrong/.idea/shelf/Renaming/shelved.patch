@@ -1,0 +1,1228 @@
+Index: app/src/main/res/layout-v21/dashboard.xml
+===================================================================
+--- app/src/main/res/layout-v21/dashboard.xml	(date 1476871619000)
++++ app/src/main/res/layout/activity_dashboard.xml	(revision )
+@@ -1,0 +1,0 @@
+Index: app/src/main/java/v3/clientstrong/models/Person.java
+===================================================================
+--- app/src/main/java/v3/clientstrong/models/Person.java	(date 1476871619000)
++++ app/src/main/java/v3/clientstrong/models/Member.java	(revision )
+@@ -4,7 +4,7 @@
+  * Created by runquest.
+  * Date: 2016-10-18
+  */
+-public class Person {
++public class Member {
+ 
+     public String id;
+     public String email;
+Index: app/src/main/res/drawable/custom_bg.xml
+===================================================================
+--- app/src/main/res/drawable/custom_bg.xml	(date 1476871619000)
++++ app/src/main/res/drawable/ripple_effect.xml	(revision )
+@@ -1,0 +1,0 @@
+Index: app/src/main/java/v3/clientstrong/mainFragments/ExerciseListFragment.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/v3/clientstrong/mainFragments/ExerciseListFragment.java	(revision )
++++ app/src/main/java/v3/clientstrong/mainFragments/ExerciseListFragment.java	(revision )
+@@ -0,0 +1,54 @@
++package v3.clientstrong.mainFragments;
++
++import android.net.Uri;
++import android.os.Bundle;
++import android.support.v4.app.Fragment;
++import android.view.LayoutInflater;
++import android.view.View;
++import android.view.ViewGroup;
++
++import v3.clientstrong.R;
++import v3.clientstrong.customViews.ProfileContactCard;
++
++/**
++ * A simple {@link Fragment} subclass.
++ * Activities that contain this fragment must implement the
++ * {@link ExerciseListFragment.OnFragmentInteractionListener} interface
++ * to handle interaction events.
++ * Use the {@link ExerciseListFragment#newInstance} factory method to
++ * create an instance of this fragment.
++ */
++public class ExerciseListFragment extends Fragment {
++
++
++    private OnFragmentInteractionListener mListener;
++
++    public ExerciseListFragment() {
++    }
++
++    @Override
++    public void onCreate(Bundle savedInstanceState) {
++        super.onCreate(savedInstanceState);
++    }
++
++    @Override
++    public View onCreateView(LayoutInflater inflater, ViewGroup container,
++                             Bundle savedInstanceState) {
++        View view = inflater.inflate(R.layout.fragment_blank, container, false);
++        ProfileContactCard profileContactCard1 = (ProfileContactCard) view.findViewById(R.id.myView1);
++        ProfileContactCard profileContactCard2 = (ProfileContactCard) view.findViewById(R.id.myView2);
++
++        profileContactCard1.setCustomDrawable(getResources().getDrawable(R.drawable.ic_email));
++        profileContactCard2.setCustomDrawable(getResources().getDrawable(R.drawable.ic_star));
++
++        profileContactCard1.setContent("Content 1");
++        profileContactCard2.setContent("Something has been written");
++
++        return view;
++    }
++
++    public interface OnFragmentInteractionListener {
++        // TODO: Update argument type and name
++        void onFragmentInteraction(Uri uri);
++    }
++}
+Index: app/src/main/res/drawable-v21/custom_bg.xml
+===================================================================
+--- app/src/main/res/drawable-v21/custom_bg.xml	(date 1476871619000)
++++ app/src/main/res/drawable-v21/ripple_effect.xml	(revision )
+@@ -1,0 +1,0 @@
+Index: app/src/main/res/layout/activity_profile_screen.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/layout/activity_profile_screen.xml	(date 1476871619000)
++++ app/src/main/res/layout/activity_profile_screen.xml	(revision )
+@@ -5,7 +5,7 @@
+     android:layout_width="match_parent"
+     android:layout_height="match_parent"
+     android:fitsSystemWindows="true"
+-    tools:context=".activities.ProfileScreen">
++    tools:context=".activities.MembersProfile">
+ 
+     <android.support.design.widget.AppBarLayout
+         android:id="@+id/app_bar_layout"
+Index: app/src/main/res/layout/member_cell.xml
+===================================================================
+--- app/src/main/res/layout/member_cell.xml	(date 1476871619000)
++++ app/src/main/res/layout/cell_member_list.xml	(revision )
+@@ -12,7 +12,7 @@
+     <RelativeLayout
+         android:layout_width="match_parent"
+         android:layout_height="match_parent"
+-        android:background="@drawable/custom_bg"
++        android:background="@drawable/ripple_effect"
+         android:paddingBottom="8dp"
+         android:paddingTop="8dp">
+ 
+@@ -24,7 +24,7 @@
+             android:layout_alignParentStart="true"
+             android:layout_marginEnd="16dp"
+             android:layout_marginStart="16dp"
+-            android:background="@drawable/ic_profile_image_default"
++            android:background="@drawable/frame_profile_image"
+             android:textAlignment="center"
+             android:textColor="@color/colorTextIcons"
+             android:textSize="40sp"
+\ No newline at end of file
+Index: app/src/main/java/v3/clientstrong/mainFragments/Exercises.java
+===================================================================
+--- app/src/main/java/v3/clientstrong/mainFragments/Exercises.java	(date 1476871619000)
++++ app/src/main/java/v3/clientstrong/mainFragments/Exercises.java	(date 1476871619000)
+@@ -1,109 +0,0 @@
+-package v3.clientstrong.mainFragments;
+-
+-import android.content.Context;
+-import android.net.Uri;
+-import android.os.Bundle;
+-import android.support.v4.app.Fragment;
+-import android.view.LayoutInflater;
+-import android.view.View;
+-import android.view.ViewGroup;
+-
+-import v3.clientstrong.R;
+-
+-/**
+- * A simple {@link Fragment} subclass.
+- * Activities that contain this fragment must implement the
+- * {@link Exercises.OnFragmentInteractionListener} interface
+- * to handle interaction events.
+- * Use the {@link Exercises#newInstance} factory method to
+- * create an instance of this fragment.
+- */
+-public class Exercises extends Fragment {
+-    // TODO: Rename parameter arguments, choose names that match
+-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
+-    private static final String ARG_PARAM1 = "param1";
+-    private static final String ARG_PARAM2 = "param2";
+-
+-    // TODO: Rename and change types of parameters
+-    private String mParam1;
+-    private String mParam2;
+-
+-    private OnFragmentInteractionListener mListener;
+-
+-    public Exercises() {
+-        // Required empty public constructor
+-    }
+-
+-    /**
+-     * Use this factory method to create a new instance of
+-     * this fragment using the provided parameters.
+-     *
+-     * @param param1 Parameter 1.
+-     * @param param2 Parameter 2.
+-     * @return A new instance of fragment Schedule.
+-     */
+-    // TODO: Rename and change types and number of parameters
+-    public static Exercises newInstance(String param1, String param2) {
+-        Exercises fragment = new Exercises();
+-        Bundle args = new Bundle();
+-        args.putString(ARG_PARAM1, param1);
+-        args.putString(ARG_PARAM2, param2);
+-        fragment.setArguments(args);
+-        return fragment;
+-    }
+-
+-    @Override
+-    public void onCreate(Bundle savedInstanceState) {
+-        super.onCreate(savedInstanceState);
+-        if (getArguments() != null) {
+-            mParam1 = getArguments().getString(ARG_PARAM1);
+-            mParam2 = getArguments().getString(ARG_PARAM2);
+-        }
+-    }
+-
+-    @Override
+-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+-                             Bundle savedInstanceState) {
+-        // Inflate the layout for this fragment
+-        return inflater.inflate(R.layout.fragment_blank, container, false);
+-    }
+-
+-    // TODO: Rename method, update argument and hook method into UI event
+-    public void onButtonPressed(Uri uri) {
+-        if (mListener != null) {
+-            mListener.onFragmentInteraction(uri);
+-        }
+-    }
+-
+-    @Override
+-    public void onAttach(Context context) {
+-        super.onAttach(context);
+-        if (context instanceof OnFragmentInteractionListener) {
+-            mListener = (OnFragmentInteractionListener) context;
+-        } else {
+-            throw new RuntimeException(context.toString()
+-                    + " must implement OnFragmentInteractionListener");
+-        }
+-    }
+-
+-    @Override
+-    public void onDetach() {
+-        super.onDetach();
+-        mListener = null;
+-    }
+-
+-    /**
+-     * This interface must be implemented by activities that contain this
+-     * fragment to allow an interaction in this fragment to be communicated
+-     * to the activity and potentially other fragments contained in that
+-     * activity.
+-     * <p/>
+-     * See the Android Training lesson <a href=
+-     * "http://developer.android.com/training/basics/fragments/communicating.html"
+-     * >Communicating with Other Fragments</a> for more information.
+-     */
+-    public interface OnFragmentInteractionListener {
+-        // TODO: Update argument type and name
+-        void onFragmentInteraction(Uri uri);
+-    }
+-}
+Index: .idea/copyright/runquest.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- .idea/copyright/runquest.xml	(revision )
++++ .idea/copyright/runquest.xml	(revision )
+@@ -0,0 +1,6 @@
++<component name="CopyrightManager">
++  <copyright>
++    <option name="myName" value="runquest" />
++    <option name="notice" value="/**&#10; * Last modified: 2016-10-24&#10; * Created by @runquest&#10; * // TODO: purpose.&#10; */" />
++  </copyright>
++</component>
+\ No newline at end of file
+Index: app/src/main/java/v3/clientstrong/mainFragments/MembersListFragment.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/v3/clientstrong/mainFragments/MembersListFragment.java	(date 1476871619000)
++++ app/src/main/java/v3/clientstrong/mainFragments/MembersListFragment.java	(revision )
+@@ -19,9 +19,9 @@
+ import java.util.ArrayList;
+ 
+ import v3.clientstrong.R;
+-import v3.clientstrong.adapters.MembersAdapter;
+-import v3.clientstrong.models.Person;
+-import v3.clientstrong.requests.PeopleListRequest;
++import v3.clientstrong.adapters.MembersListAdapter;
++import v3.clientstrong.models.Member;
++import v3.clientstrong.requests.MembersListRequest;
+ import v3.clientstrong.requests.RequestManager;
+ 
+ /**
+@@ -46,7 +46,7 @@
+     public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                              Bundle savedInstanceState) {
+ 
+-        View root = inflater.inflate(R.layout.fragment_members, container, false);
++        View root = inflater.inflate(R.layout.fragment_members_list, container, false);
+         mMembersListView = (RecyclerView) root.findViewById(R.id.members_list);
+         mMembersListView.setLayoutManager(new LinearLayoutManager(getActivity()));
+         mMembersListView.setHasFixedSize(true);
+@@ -55,11 +55,12 @@
+     }
+ 
+     public void requestMemberList(String endPoint) {
+-        PeopleListRequest jsObjRequest = new PeopleListRequest(endPoint, new Response.Listener<JSONArray>() {
++        MembersListRequest jsObjRequest = new MembersListRequest(endPoint, new Response.Listener<JSONArray>() {
+ 
+             @Override
+             public void onResponse(JSONArray response) {
+-                ArrayList<Person> peopleList = new Gson().fromJson(response.toString(), new TypeToken<ArrayList<Person>>(){}.getType());
++                ArrayList<Member> peopleList = new Gson().fromJson(response.toString(),
++                        new TypeToken<ArrayList<Member>>(){}.getType());
+                 populateMemberList(peopleList);
+             }
+         }, new Response.ErrorListener() {
+@@ -72,8 +73,8 @@
+         RequestManager.getInstance(getContext()).addToRequestQueue(jsObjRequest);
+     }
+ 
+-    public void populateMemberList(ArrayList<Person> peopleList) {
+-        MembersAdapter adapter = new MembersAdapter(this, peopleList, mMembersListView);
++    public void populateMemberList(ArrayList<Member> peopleList) {
++        MembersListAdapter adapter = new MembersListAdapter(this, peopleList, mMembersListView);
+         mMembersListView.setAdapter(adapter);
+     }
+ }
+Index: app/src/main/res/layout/dashboard.xml
+===================================================================
+--- app/src/main/res/layout/dashboard.xml	(date 1476871619000)
++++ app/src/main/res/layout-v21/activity_dashboard.xml	(revision )
+@@ -1,0 +1,0 @@
+Index: app/src/main/res/values/dimens.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/values/dimens.xml	(date 1476871619000)
++++ app/src/main/res/values/dimens.xml	(revision )
+@@ -6,4 +6,11 @@
+     <dimen name="fab_margin">16dp</dimen>
+     <dimen name="toolbar_elevation">30dp</dimen>
+     <dimen name="toolbar_title_margin_top">12dp</dimen>
++    <dimen name="calendar_layout_margin">8dp</dimen>
++    <dimen name="profile_icon_width">36dp</dimen>
++    <dimen name="profile_icon_height">36dp</dimen>
++    <dimen name="profile_icon_padding">4dp</dimen>
++    <dimen name="profile_icon_margin_end">16dp</dimen>
++    <dimen name="profile_cell_height">44dp</dimen>
++    <dimen name="profile_cell_text_size">16sp</dimen>
+ </resources>
+Index: app/src/main/res/values/attrs_my_view.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/values/attrs_my_view.xml	(revision )
++++ app/src/main/res/values/attrs_my_view.xml	(revision )
+@@ -0,0 +1,6 @@
++<resources>
++    <declare-styleable name="ProfileContactCard">
++        <attr name="pIcon" format="integer" />
++        <attr name="pContent" format="string" />
++    </declare-styleable>
++</resources>
+Index: app/src/main/res/layout/fragment_blank.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/layout/fragment_blank.xml	(date 1476871619000)
++++ app/src/main/res/layout/fragment_blank.xml	(revision )
+@@ -1,6 +1,7 @@
+ <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+     android:layout_width="match_parent"
+     android:layout_height="match_parent">
++
+     <ImageView
+         android:layout_width="match_parent"
+         android:layout_height="match_parent"
+@@ -8,7 +9,6 @@
+         android:alpha="0.5"
+         android:scaleType="centerInside"/>
+ 
+-
+     <LinearLayout
+         android:layout_width="match_parent"
+         android:layout_height="match_parent"
+@@ -31,7 +31,5 @@
+             android:textColor="@color/colorSecondaryText"
+             android:textAlignment="center"
+             android:text="@string/blank_fragment_subTitle" />
+-
+     </LinearLayout>
+-
+ </FrameLayout>
+Index: app/src/main/java/v3/clientstrong/requests/PeopleListRequest.java
+===================================================================
+--- app/src/main/java/v3/clientstrong/requests/PeopleListRequest.java	(date 1476871619000)
++++ app/src/main/java/v3/clientstrong/requests/MembersListRequest.java	(revision )
+@@ -13,9 +13,9 @@
+  * Created by runquest.
+  * Date: 2016-10-19
+  */
+-public class PeopleListRequest extends JsonArrayRequest {
++public class MembersListRequest extends JsonArrayRequest {
+ 
+-    public PeopleListRequest(String endPoint, Response.Listener<JSONArray> listener, Response.ErrorListener errorListener) {
++    public MembersListRequest(String endPoint, Response.Listener<JSONArray> listener, Response.ErrorListener errorListener) {
+         super(getURL(endPoint), listener, errorListener);
+     }
+ 
+Index: app/src/main/res/layout/fragment_exercises.xml
+===================================================================
+--- app/src/main/res/layout/fragment_exercises.xml	(date 1476871619000)
++++ app/src/main/res/layout/fragment_exercise_list.xml	(revision )
+@@ -2,7 +2,7 @@
+     xmlns:tools="http://schemas.android.com/tools"
+     android:layout_width="match_parent"
+     android:layout_height="match_parent"
+-    tools:context="v3.clientstrong.mainFragments.Exercises">
++    tools:context="v3.clientstrong.mainFragments.ExerciseListFragment">
+ 
+     <!-- TODO: Update blank fragment layout -->
+     <TextView
+Index: app/src/main/AndroidManifest.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/AndroidManifest.xml	(date 1476871619000)
++++ app/src/main/AndroidManifest.xml	(revision )
+@@ -29,7 +29,7 @@
+             android:label="@string/title_activity_main3"
+             android:theme="@style/AppTheme.NoActionBar" />
+         <activity
+-            android:name=".activities.ProfileScreen"
++            android:name=".activities.MembersProfile"
+             android:label="@string/title_activity_profile_screen"
+             android:parentActivityName=".activities.Dashboard"
+             android:theme="@style/AppTheme.NoActionBar">
+Index: app/src/main/java/v3/clientstrong/activities/Dashboard.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/v3/clientstrong/activities/Dashboard.java	(date 1476871619000)
++++ app/src/main/java/v3/clientstrong/activities/Dashboard.java	(revision )
+@@ -11,12 +11,12 @@
+ import android.view.View;
+ 
+ import v3.clientstrong.R;
+-import v3.clientstrong.adapters.ViewPagerAdapter;
+-import v3.clientstrong.mainFragments.Exercises;
++import v3.clientstrong.adapters.DashboardViewPagerAdapter;
++import v3.clientstrong.mainFragments.ExerciseListFragment;
+ import v3.clientstrong.mainFragments.MembersListFragment;
+-import v3.clientstrong.mainFragments.Workouts;
++import v3.clientstrong.mainFragments.WorkoutsListFragment;
+ 
+-public class Dashboard extends AppCompatActivity implements MembersListFragment.OnFragmentInteractionListener, Workouts.OnFragmentInteractionListener, Exercises.OnFragmentInteractionListener {
++public class Dashboard extends AppCompatActivity implements MembersListFragment.OnFragmentInteractionListener, WorkoutsListFragment.OnFragmentInteractionListener, ExerciseListFragment.OnFragmentInteractionListener {
+ 
+     private FloatingActionButton mFloatingActionButton;
+ 
+@@ -28,7 +28,7 @@
+         super.onCreate(savedInstanceState);
+         String activityTitle = getTitle().toString();
+ 
+-        setContentView(R.layout.dashboard);
++        setContentView(R.layout.activity_dashboard);
+         setTitle(activityTitle);
+ 
+         Toolbar toolbar = (Toolbar) findViewById(R.id.htab_toolbar);
+@@ -44,10 +44,10 @@
+     }
+ 
+     private void setupViewPager(ViewPager viewPager) {
+-        ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
++        DashboardViewPagerAdapter adapter = new DashboardViewPagerAdapter(getSupportFragmentManager());
+         adapter.addFragment(new MembersListFragment(), "Members");
+-        adapter.addFragment(new Workouts(), "Workouts");
+-        adapter.addFragment(new Exercises(), "Exercises");
++        adapter.addFragment(new WorkoutsListFragment(), "Workouts");
++        adapter.addFragment(new ExerciseListFragment(), "Exercises");
+         viewPager.setAdapter(adapter);
+     }
+ 
+\ No newline at end of file
+Index: .idea/misc.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- .idea/misc.xml	(date 1476871619000)
++++ .idea/misc.xml	(revision )
+@@ -27,5 +27,5 @@
+       </value>
+     </option>
+   </component>
+-  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" assert-keyword="true" jdk-15="true" project-jdk-name="1.8" project-jdk-type="JavaSDK" />
++  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_7" assert-keyword="true" jdk-15="true" project-jdk-name="1.8" project-jdk-type="JavaSDK" />
+ </project>
+\ No newline at end of file
+Index: app/src/main/res/drawable/back.xml
+===================================================================
+--- app/src/main/res/drawable/back.xml	(date 1476871619000)
++++ app/src/main/res/drawable/back.xml	(date 1476871619000)
+@@ -1,7 +0,0 @@
+-<?xml version="1.0" encoding="utf-8"?>
+-<shape xmlns:android="http://schemas.android.com/apk/res/android"
+-    android:shape="rectangle">
+-    <stroke
+-        android:width="1dip"
+-        android:color="#4fa5d5" />
+-</shape>
+\ No newline at end of file
+Index: app/src/main/java/v3/clientstrong/adapters/MembersAdapter.java
+===================================================================
+--- app/src/main/java/v3/clientstrong/adapters/MembersAdapter.java	(date 1476871619000)
++++ app/src/main/java/v3/clientstrong/adapters/MembersListAdapter.java	(revision )
+@@ -13,21 +13,21 @@
+ import java.util.List;
+ 
+ import v3.clientstrong.R;
+-import v3.clientstrong.activities.ProfileScreen;
++import v3.clientstrong.activities.MembersProfile;
+ import v3.clientstrong.mainFragments.MembersListFragment;
+-import v3.clientstrong.models.Person;
++import v3.clientstrong.models.Member;
+ 
+ /**
+  * Created by runquest.
+  * Date: 2016-10-19
+  */
+-public class MembersAdapter extends RecyclerView.Adapter<MembersAdapter.MemberViewHolder> {
++public class MembersListAdapter extends RecyclerView.Adapter<MembersListAdapter.MemberViewHolder> {
+ 
+     private MembersListFragment mContext;
+-    private List<Person> mMembersList;
++    private List<Member> mMembersList;
+     private RecyclerView mMembersListView;
+ 
+-    public MembersAdapter(MembersListFragment fragment, List<Person> membersList, RecyclerView membersListView) {
++    public MembersListAdapter(MembersListFragment fragment, List<Member> membersList, RecyclerView membersListView) {
+         this.mContext = fragment;
+         this.mMembersList = membersList;
+         this.mMembersListView = membersListView;
+@@ -40,18 +40,18 @@
+ 
+     @Override
+     public void onBindViewHolder(MemberViewHolder memberViewHolder, int i) {
+-        Person person = mMembersList.get(i);
++        Member member = mMembersList.get(i);
+         memberViewHolder.setItem(mMembersList.get(i).toString());
+-        memberViewHolder.mFullName.setText(person.getFullName());
+-        memberViewHolder.mLetterIcon.setText(person.getFirstNameLetter());
+-        memberViewHolder.mFavoriteIcon.setBackground(getBackground(person.isFavorite()));
++        memberViewHolder.mFullName.setText(member.getFullName());
++        memberViewHolder.mLetterIcon.setText(member.getFirstNameLetter());
++        memberViewHolder.mFavoriteIcon.setBackground(getBackground(member.isFavorite()));
+     }
+ 
+     @Override
+     public MemberViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
+         View itemView = LayoutInflater.
+                 from(viewGroup.getContext()).
+-                inflate(R.layout.member_cell, viewGroup, false);
++                inflate(R.layout.cell_member_list, viewGroup, false);
+ 
+         return new MemberViewHolder(itemView);
+     }
+@@ -79,9 +79,9 @@
+         @Override
+         public void onClick(View v) {
+             int itemPosition = mMembersListView.getChildPosition(v);
+-            Person item = mMembersList.get(itemPosition);
++            Member item = mMembersList.get(itemPosition);
+ 
+-            Intent intent = new Intent(mContext.getActivity(), ProfileScreen.class).putExtra(Intent.EXTRA_TEXT, item.id);
++            Intent intent = new Intent(mContext.getActivity(), MembersProfile.class).putExtra(Intent.EXTRA_TEXT, item.id);
+             mContext.startActivity(intent);
+         }
+ 
+Index: app/src/main/res/layout-v21/fragment_profile_screen.xml
+===================================================================
+--- app/src/main/res/layout-v21/fragment_profile_screen.xml	(date 1476871619000)
++++ app/src/main/res/layout-v21/fragment_profile_screen.xml	(date 1476871619000)
+@@ -1,274 +0,0 @@
+-<android.support.v4.widget.NestedScrollView
+-    xmlns:android="http://schemas.android.com/apk/res/android"
+-    xmlns:app="http://schemas.android.com/apk/res-auto"
+-    xmlns:tools="http://schemas.android.com/tools"
+-    android:layout_width="match_parent"
+-    android:layout_height="match_parent"
+-    android:background="@color/colorPrimaryLight"
+-    android:orientation="vertical"
+-    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+-    tools:context="v3.clientstrong.mainFragments.ProfileScreenFragment"
+-    tools:showIn="@layout/activity_profile_screen">
+-
+-    <LinearLayout
+-        android:layout_width="match_parent"
+-        android:layout_height="wrap_content"
+-        android:orientation="vertical">
+-
+-        <LinearLayout android:layout_width="match_parent"
+-            android:layout_height="56dp"
+-            android:background="@color/colorAccent"
+-            android:orientation="horizontal">
+-
+-            <LinearLayout
+-                android:layout_width="0dp"
+-                android:layout_height="wrap_content"
+-                android:layout_marginBottom="8dp"
+-                android:layout_marginTop="8dp"
+-                android:layout_weight="1"
+-                android:gravity="center"
+-                android:orientation="vertical">
+-
+-                <TextView
+-                    android:layout_width="wrap_content"
+-                    android:layout_height="wrap_content"
+-                    android:layout_weight="1"
+-                    android:gravity="center"
+-                    android:text="Workouts"
+-                    android:textAlignment="center"
+-                    android:textColor="@color/colorPrimaryLight"
+-                    android:textSize="12sp"
+-                    android:textStyle="bold"/>
+-
+-                <TextView
+-                    android:layout_width="wrap_content"
+-                    android:layout_height="wrap_content"
+-                    android:layout_weight="1"
+-                    android:gravity="center"
+-                    android:text="25"
+-                    android:textAlignment="center"
+-                    android:textColor="@color/colorPrimaryLight"
+-                    android:textSize="24sp"/>
+-
+-            </LinearLayout>
+-
+-            <View
+-                android:layout_width="1dp"
+-                android:layout_height="match_parent"
+-                android:layout_marginBottom="8dp"
+-                android:layout_marginTop="8dp"
+-                android:background="@color/colorPrimaryLight" />
+-
+-            <LinearLayout
+-                android:layout_width="0dp"
+-                android:layout_height="wrap_content"
+-                android:layout_marginBottom="8dp"
+-                android:layout_marginTop="8dp"
+-                android:layout_weight="1"
+-                android:gravity="center"
+-                android:orientation="vertical">
+-
+-                <TextView
+-                    android:layout_width="wrap_content"
+-                    android:layout_height="wrap_content"
+-                    android:layout_weight="1"
+-                    android:gravity="center"
+-                    android:text="Sessions left"
+-                    android:textAlignment="center"
+-                    android:textColor="@color/colorPrimaryLight"
+-                    android:textSize="12sp"
+-                    android:textStyle="bold"/>
+-
+-                <TextView
+-                    android:layout_width="wrap_content"
+-                    android:layout_height="wrap_content"
+-                    android:layout_weight="1"
+-                    android:gravity="center"
+-                    android:text="5"
+-                    android:textAlignment="center"
+-                    android:textColor="@color/colorPrimaryLight"
+-                    android:textSize="24sp"/>
+-
+-            </LinearLayout>
+-
+-            <View
+-                android:layout_width="1dp"
+-                android:layout_height="match_parent"
+-                android:layout_marginBottom="8dp"
+-                android:layout_marginTop="8dp"
+-                android:background="@color/colorPrimaryLight" />
+-
+-            <LinearLayout
+-                android:layout_width="0dp"
+-                android:layout_height="wrap_content"
+-                android:layout_marginBottom="8dp"
+-                android:layout_marginTop="8dp"
+-                android:layout_weight="1"
+-                android:gravity="center"
+-                android:orientation="vertical">
+-
+-                <TextView
+-                    android:layout_width="wrap_content"
+-                    android:layout_height="wrap_content"
+-                    android:layout_weight="1"
+-                    android:gravity="center"
+-                    android:text="Points earned"
+-                    android:textAlignment="center"
+-                    android:textColor="@color/colorPrimaryLight"
+-                    android:textSize="12sp"
+-                    android:textStyle="bold"/>
+-
+-                <TextView
+-                    android:layout_width="wrap_content"
+-                    android:layout_height="wrap_content"
+-                    android:layout_weight="1"
+-                    android:gravity="center"
+-                    android:text="125"
+-                    android:textAlignment="center"
+-                    android:textColor="@color/colorPrimaryLight"
+-                    android:textSize="24sp"/>
+-
+-            </LinearLayout>
+-        </LinearLayout>
+-
+-        <android.support.v7.widget.CardView
+-            android:layout_width="match_parent"
+-            android:layout_height="wrap_content"
+-            android:layout_margin="8dp">
+-
+-            <LinearLayout
+-                android:layout_width="match_parent"
+-                android:layout_height="wrap_content"
+-                android:orientation="vertical"
+-                android:padding="16dp" >
+-
+-                <TextView
+-                    android:layout_width="wrap_content"
+-                    android:layout_height="wrap_content"
+-                    android:layout_marginBottom="4dp"
+-                    android:text="Personal Information"
+-                    android:textSize="20sp"
+-                    android:textStyle="bold" />
+-
+-                <View
+-                    android:layout_width="match_parent"
+-                    android:layout_height="1dp"
+-                    android:layout_marginBottom="4dp"
+-                    android:layout_marginTop="1dp"
+-                    android:background="@color/colorPrimaryLight" />
+-
+-                <LinearLayout
+-                    android:layout_width="match_parent"
+-                    android:layout_height="wrap_content"
+-                    android:orientation="horizontal">
+-
+-                    <ImageView
+-                        android:layout_width="36dp"
+-                        android:layout_height="36dp"
+-                        android:layout_gravity="center_vertical"
+-                        android:backgroundTint="@color/colorAccent"
+-                        android:padding="4dp"
+-                        android:src="@drawable/ic_action_home"
+-                        android:layout_marginEnd="16dp"
+-                        android:tint="@color/colorPrimaryDark" />
+-
+-                    <TextView
+-                        android:layout_width="wrap_content"
+-                        android:layout_height="44dp"
+-                        android:gravity="center_vertical"
+-                        android:text="21 Manor Station Court Westland, MI 48185"
+-                        android:textSize="16sp" />
+-                </LinearLayout>
+-
+-                <LinearLayout
+-                    android:layout_width="match_parent"
+-                    android:layout_height="wrap_content"
+-                    android:orientation="horizontal">
+-
+-                    <ImageView
+-                        android:layout_width="36dp"
+-                        android:layout_height="36dp"
+-                        android:layout_gravity="center_vertical"
+-                        android:padding="4dp"
+-                        android:layout_marginEnd="16dp"
+-                        android:src="@drawable/ic_phone"
+-                        android:tint="@color/colorPrimaryDark" />
+-
+-                    <TextView
+-                        android:layout_width="wrap_content"
+-                        android:layout_height="44dp"
+-                        android:gravity="center_vertical"
+-                        android:text="778 223 8902"
+-                        android:textSize="16sp" />
+-                </LinearLayout>
+-
+-                <LinearLayout
+-                    android:layout_width="match_parent"
+-                    android:layout_height="wrap_content"
+-                    android:orientation="horizontal">
+-
+-                    <ImageView
+-                        android:layout_width="36dp"
+-                        android:layout_height="36dp"
+-                        android:layout_gravity="center_vertical"
+-                        android:layout_marginEnd="16dp"
+-                        android:padding="4dp"
+-                        android:src="@drawable/ic_email"
+-                        android:tint="@color/colorPrimaryDark" />
+-
+-                    <TextView
+-                        android:layout_width="wrap_content"
+-                        android:layout_height="44dp"
+-                        android:gravity="center_vertical"
+-                        android:text="dopey.dwarf@clientstrong.com"
+-                        android:textSize="16sp" />
+-                </LinearLayout>
+-
+-                <LinearLayout
+-                    android:layout_width="match_parent"
+-                    android:layout_height="wrap_content"
+-                    android:orientation="horizontal">
+-
+-                    <ImageView
+-                        android:layout_width="36dp"
+-                        android:layout_height="36dp"
+-                        android:layout_gravity="center_vertical"
+-                        android:padding="4dp"
+-                        android:layout_marginEnd="16dp"
+-                        android:alpha="1"
+-                        android:src="@drawable/ic_cake"
+-                        android:tint="@color/colorPrimaryDark" />
+-
+-                    <TextView
+-                        android:layout_width="wrap_content"
+-                        android:layout_height="44dp"
+-                        android:gravity="center_vertical"
+-                        android:text="04/21/1980"
+-                        android:textSize="16sp" />
+-                </LinearLayout>
+-            </LinearLayout>
+-        </android.support.v7.widget.CardView>
+-
+-        <CalendarView
+-            android:layout_width="match_parent"
+-            android:layout_height="wrap_content"
+-            android:layout_margin="8dp" />
+-
+-            <TextView
+-                android:layout_width="match_parent"
+-                android:layout_height="72dp"
+-                android:textSize="24sp"
+-                android:layout_marginTop="8dp"
+-                android:textAlignment="center"
+-                android:background="@color/colorAccent"
+-                android:elevation="50dp"
+-                android:shadowRadius="1.2"
+-                android:textStyle="bold"
+-                android:textColor="@color/colorPrimaryLight"
+-                android:text="Today's workout"
+-                android:padding="4dp"
+-                android:gravity="center"/>
+-
+-
+-    </LinearLayout>
+-</android.support.v4.widget.NestedScrollView>
+\ No newline at end of file
+Index: app/src/main/java/v3/clientstrong/activities/ProfileScreen.java
+===================================================================
+--- app/src/main/java/v3/clientstrong/activities/ProfileScreen.java	(date 1476871619000)
++++ app/src/main/java/v3/clientstrong/activities/MembersProfile.java	(revision )
+@@ -16,7 +16,7 @@
+ 
+ import v3.clientstrong.R;
+ 
+-public class ProfileScreen extends AppCompatActivity {
++public class MembersProfile extends AppCompatActivity {
+ 
+     private FloatingActionButton fab;
+ 
+@@ -105,7 +105,7 @@
+     @Override
+     public boolean onCreateOptionsMenu(Menu menu) {
+         // Inflate the menu; this adds items to the action bar if it is present.
+-        getMenuInflater().inflate(R.menu.menu_profile_screen, menu);
++        getMenuInflater().inflate(R.menu.menu_contact_action, menu);
+ 
+         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
+             Drawable email = getDrawable(R.drawable.ic_email);
+Index: app/src/main/res/layout/fragment_members.xml
+===================================================================
+--- app/src/main/res/layout/fragment_members.xml	(date 1476871619000)
++++ app/src/main/res/layout/fragment_members_list.xml	(revision )
+@@ -1,0 +1,0 @@
+Index: app/src/main/res/layout/fragment_workouts.xml
+===================================================================
+--- app/src/main/res/layout/fragment_workouts.xml	(date 1476871619000)
++++ app/src/main/res/layout/fragment_workouts_list.xml	(revision )
+@@ -2,7 +2,7 @@
+     xmlns:tools="http://schemas.android.com/tools"
+     android:layout_width="match_parent"
+     android:layout_height="match_parent"
+-    tools:context="v3.clientstrong.mainFragments.Workouts">
++    tools:context="v3.clientstrong.mainFragments.WorkoutsListFragment">
+ 
+     <!-- TODO: Update blank fragment layout -->
+     <TextView
+Index: app/src/main/java/v3/clientstrong/adapters/ViewPagerAdapter.java
+===================================================================
+--- app/src/main/java/v3/clientstrong/adapters/ViewPagerAdapter.java	(date 1476871619000)
++++ app/src/main/java/v3/clientstrong/adapters/DashboardViewPagerAdapter.java	(revision )
+@@ -12,11 +12,11 @@
+  * Date: 2016-10-18
+  */
+ 
+-public class ViewPagerAdapter extends FragmentPagerAdapter {
++public class DashboardViewPagerAdapter extends FragmentPagerAdapter {
+     private final List<Fragment> mFragmentList = new ArrayList<>();
+     private final List<String> mFragmentTitleList = new ArrayList<>();
+ 
+-    public ViewPagerAdapter(FragmentManager manager) {
++    public DashboardViewPagerAdapter(FragmentManager manager) {
+         super(manager);
+     }
+ 
+Index: app/src/main/res/layout/fragment_profile_screen.xml
+===================================================================
+--- app/src/main/res/layout/fragment_profile_screen.xml	(date 1476871619000)
++++ app/src/main/res/layout/fragment_profile_screen.xml	(date 1476871619000)
+@@ -1,274 +0,0 @@
+-<android.support.v4.widget.NestedScrollView
+-    xmlns:android="http://schemas.android.com/apk/res/android"
+-    xmlns:app="http://schemas.android.com/apk/res-auto"
+-    xmlns:tools="http://schemas.android.com/tools"
+-    android:layout_width="match_parent"
+-    android:layout_height="match_parent"
+-    android:background="@color/colorPrimaryLight"
+-    android:orientation="vertical"
+-    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+-    tools:context="v3.clientstrong.mainFragments.ProfileScreenFragment"
+-    tools:showIn="@layout/activity_profile_screen">
+-
+-    <LinearLayout
+-        android:layout_width="match_parent"
+-        android:layout_height="wrap_content"
+-        android:orientation="vertical">
+-
+-        <LinearLayout android:layout_width="match_parent"
+-            android:layout_height="56dp"
+-            android:background="@color/colorAccent"
+-            android:orientation="horizontal">
+-
+-            <LinearLayout
+-                android:layout_width="0dp"
+-                android:layout_height="wrap_content"
+-                android:layout_marginBottom="8dp"
+-                android:layout_marginTop="8dp"
+-                android:layout_weight="1"
+-                android:gravity="center"
+-                android:orientation="vertical">
+-
+-                <TextView
+-                    android:layout_width="wrap_content"
+-                    android:layout_height="wrap_content"
+-                    android:layout_weight="1"
+-                    android:gravity="center"
+-                    android:text="Workouts"
+-                    android:textAlignment="center"
+-                    android:textColor="@color/colorPrimaryLight"
+-                    android:textSize="12sp"
+-                    android:textStyle="bold"/>
+-
+-                <TextView
+-                    android:layout_width="wrap_content"
+-                    android:layout_height="wrap_content"
+-                    android:layout_weight="1"
+-                    android:gravity="center"
+-                    android:text="25"
+-                    android:textAlignment="center"
+-                    android:textColor="@color/colorPrimaryLight"
+-                    android:textSize="24sp"/>
+-
+-            </LinearLayout>
+-
+-            <View
+-                android:layout_width="1dp"
+-                android:layout_height="match_parent"
+-                android:layout_marginBottom="8dp"
+-                android:layout_marginTop="8dp"
+-                android:background="@color/colorPrimaryLight" />
+-
+-            <LinearLayout
+-                android:layout_width="0dp"
+-                android:layout_height="wrap_content"
+-                android:layout_marginBottom="8dp"
+-                android:layout_marginTop="8dp"
+-                android:layout_weight="1"
+-                android:gravity="center"
+-                android:orientation="vertical">
+-
+-                <TextView
+-                    android:layout_width="wrap_content"
+-                    android:layout_height="wrap_content"
+-                    android:layout_weight="1"
+-                    android:gravity="center"
+-                    android:text="Sessions left"
+-                    android:textAlignment="center"
+-                    android:textColor="@color/colorPrimaryLight"
+-                    android:textSize="12sp"
+-                    android:textStyle="bold"/>
+-
+-                <TextView
+-                    android:layout_width="wrap_content"
+-                    android:layout_height="wrap_content"
+-                    android:layout_weight="1"
+-                    android:gravity="center"
+-                    android:text="5"
+-                    android:textAlignment="center"
+-                    android:textColor="@color/colorPrimaryLight"
+-                    android:textSize="24sp"/>
+-
+-            </LinearLayout>
+-
+-            <View
+-                android:layout_width="1dp"
+-                android:layout_height="match_parent"
+-                android:layout_marginBottom="8dp"
+-                android:layout_marginTop="8dp"
+-                android:background="@color/colorPrimaryLight" />
+-
+-            <LinearLayout
+-                android:layout_width="0dp"
+-                android:layout_height="wrap_content"
+-                android:layout_marginBottom="8dp"
+-                android:layout_marginTop="8dp"
+-                android:layout_weight="1"
+-                android:gravity="center"
+-                android:orientation="vertical">
+-
+-                <TextView
+-                    android:layout_width="wrap_content"
+-                    android:layout_height="wrap_content"
+-                    android:layout_weight="1"
+-                    android:gravity="center"
+-                    android:text="Points earned"
+-                    android:textAlignment="center"
+-                    android:textColor="@color/colorPrimaryLight"
+-                    android:textSize="12sp"
+-                    android:textStyle="bold"/>
+-
+-                <TextView
+-                    android:layout_width="wrap_content"
+-                    android:layout_height="wrap_content"
+-                    android:layout_weight="1"
+-                    android:gravity="center"
+-                    android:text="125"
+-                    android:textAlignment="center"
+-                    android:textColor="@color/colorPrimaryLight"
+-                    android:textSize="24sp"/>
+-
+-            </LinearLayout>
+-        </LinearLayout>
+-
+-        <android.support.v7.widget.CardView
+-            android:layout_width="match_parent"
+-            android:layout_height="wrap_content"
+-            android:layout_margin="8dp">
+-
+-            <LinearLayout
+-                android:layout_width="match_parent"
+-                android:layout_height="wrap_content"
+-                android:orientation="vertical"
+-                android:padding="16dp" >
+-
+-                <TextView
+-                    android:layout_width="wrap_content"
+-                    android:layout_height="wrap_content"
+-                    android:layout_marginBottom="4dp"
+-                    android:text="Personal Information"
+-                    android:textSize="20sp"
+-                    android:textStyle="bold" />
+-
+-                <View
+-                    android:layout_width="match_parent"
+-                    android:layout_height="1dp"
+-                    android:layout_marginBottom="4dp"
+-                    android:layout_marginTop="1dp"
+-                    android:background="@color/colorPrimaryLight" />
+-
+-                <LinearLayout
+-                    android:layout_width="match_parent"
+-                    android:layout_height="wrap_content"
+-                    android:orientation="horizontal">
+-
+-                    <ImageView
+-                        android:layout_width="36dp"
+-                        android:layout_height="36dp"
+-                        android:layout_gravity="center_vertical"
+-                        android:backgroundTint="@color/colorAccent"
+-                        android:padding="4dp"
+-                        android:src="@drawable/ic_action_home"
+-                        android:layout_marginEnd="16dp"
+-                        android:tint="@color/colorPrimaryDark" />
+-
+-                    <TextView
+-                        android:layout_width="wrap_content"
+-                        android:layout_height="44dp"
+-                        android:gravity="center_vertical"
+-                        android:text="21 Manor Station Court Westland, MI 48185"
+-                        android:textSize="16sp" />
+-                </LinearLayout>
+-
+-                <LinearLayout
+-                    android:layout_width="match_parent"
+-                    android:layout_height="wrap_content"
+-                    android:orientation="horizontal">
+-
+-                    <ImageView
+-                        android:layout_width="36dp"
+-                        android:layout_height="36dp"
+-                        android:layout_gravity="center_vertical"
+-                        android:padding="4dp"
+-                        android:layout_marginEnd="16dp"
+-                        android:src="@drawable/ic_phone"
+-                        android:tint="@color/colorPrimaryDark" />
+-
+-                    <TextView
+-                        android:layout_width="wrap_content"
+-                        android:layout_height="44dp"
+-                        android:gravity="center_vertical"
+-                        android:text="778 223 8902"
+-                        android:textSize="16sp" />
+-                </LinearLayout>
+-
+-                <LinearLayout
+-                    android:layout_width="match_parent"
+-                    android:layout_height="wrap_content"
+-                    android:orientation="horizontal">
+-
+-                    <ImageView
+-                        android:layout_width="36dp"
+-                        android:layout_height="36dp"
+-                        android:layout_gravity="center_vertical"
+-                        android:layout_marginEnd="16dp"
+-                        android:padding="4dp"
+-                        android:src="@drawable/ic_email"
+-                        android:tint="@color/colorPrimaryDark" />
+-
+-                    <TextView
+-                        android:layout_width="wrap_content"
+-                        android:layout_height="44dp"
+-                        android:gravity="center_vertical"
+-                        android:text="dopey.dwarf@clientstrong.com"
+-                        android:textSize="16sp" />
+-                </LinearLayout>
+-
+-                <LinearLayout
+-                    android:layout_width="match_parent"
+-                    android:layout_height="wrap_content"
+-                    android:orientation="horizontal">
+-
+-                    <ImageView
+-                        android:layout_width="36dp"
+-                        android:layout_height="36dp"
+-                        android:layout_gravity="center_vertical"
+-                        android:padding="4dp"
+-                        android:layout_marginEnd="16dp"
+-                        android:alpha="1"
+-                        android:src="@drawable/ic_cake"
+-                        android:tint="@color/colorPrimaryDark" />
+-
+-                    <TextView
+-                        android:layout_width="wrap_content"
+-                        android:layout_height="44dp"
+-                        android:gravity="center_vertical"
+-                        android:text="04/21/1980"
+-                        android:textSize="16sp" />
+-                </LinearLayout>
+-            </LinearLayout>
+-        </android.support.v7.widget.CardView>
+-
+-        <CalendarView
+-            android:layout_width="match_parent"
+-            android:layout_height="wrap_content"
+-            android:layout_margin="8dp" />
+-
+-            <TextView
+-                android:layout_width="match_parent"
+-                android:layout_height="72dp"
+-                android:textSize="24sp"
+-                android:layout_marginTop="8dp"
+-                android:textAlignment="center"
+-                android:background="@color/colorAccent"
+-                android:elevation="50dp"
+-                android:shadowRadius="1.2"
+-                android:textStyle="bold"
+-                android:textColor="@color/colorPrimaryLight"
+-                android:text="Today's workout"
+-                android:padding="4dp"
+-                android:gravity="center"/>
+-
+-
+-    </LinearLayout>
+-</android.support.v4.widget.NestedScrollView>
+\ No newline at end of file
+Index: app/src/main/java/v3/clientstrong/mainFragments/Workouts.java
+===================================================================
+--- app/src/main/java/v3/clientstrong/mainFragments/Workouts.java	(date 1476871619000)
++++ app/src/main/java/v3/clientstrong/mainFragments/WorkoutsListFragment.java	(revision )
+@@ -13,12 +13,12 @@
+ /**
+  * A simple {@link Fragment} subclass.
+  * Activities that contain this fragment must implement the
+- * {@link Workouts.OnFragmentInteractionListener} interface
++ * {@link WorkoutsListFragment.OnFragmentInteractionListener} interface
+  * to handle interaction events.
+- * Use the {@link Workouts#newInstance} factory method to
++ * Use the {@link WorkoutsListFragment#newInstance} factory method to
+  * create an instance of this fragment.
+  */
+-public class Workouts extends Fragment {
++public class WorkoutsListFragment extends Fragment {
+     // TODO: Rename parameter arguments, choose names that match
+     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
+     private static final String ARG_PARAM1 = "param1";
+@@ -30,7 +30,7 @@
+ 
+     private OnFragmentInteractionListener mListener;
+ 
+-    public Workouts() {
++    public WorkoutsListFragment() {
+         // Required empty public constructor
+     }
+ 
+@@ -43,8 +43,8 @@
+      * @return A new instance of fragment Invoices.
+      */
+     // TODO: Rename and change types and number of parameters
+-    public static Workouts newInstance(String param1, String param2) {
+-        Workouts fragment = new Workouts();
++    public static WorkoutsListFragment newInstance(String param1, String param2) {
++        WorkoutsListFragment fragment = new WorkoutsListFragment();
+         Bundle args = new Bundle();
+         args.putString(ARG_PARAM1, param1);
+         args.putString(ARG_PARAM2, param2);

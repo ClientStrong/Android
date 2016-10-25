@@ -12,7 +12,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/custom_bg"
+        android:background="@drawable/ripple_effect"
         android:paddingBottom="8dp"
         android:paddingTop="8dp">
 
@@ -24,7 +24,7 @@
             android:layout_alignParentStart="true"
             android:layout_marginEnd="16dp"
             android:layout_marginStart="16dp"
-            android:background="@drawable/ic_profile_image_default"
+            android:background="@drawable/frame_profile_image"
             android:textAlignment="center"
             android:textColor="@color/colorTextIcons"
             android:textSize="40sp"

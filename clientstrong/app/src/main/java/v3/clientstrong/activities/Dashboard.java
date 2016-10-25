@@ -11,12 +11,12 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 
 import v3.clientstrong.R;
-import v3.clientstrong.adapters.ViewPagerAdapter;
-import v3.clientstrong.mainFragments.Exercises;
+import v3.clientstrong.adapters.DashboardViewPagerAdapter;
+import v3.clientstrong.mainFragments.ExerciseListFragment;
 import v3.clientstrong.mainFragments.MembersListFragment;
-import v3.clientstrong.mainFragments.Workouts;
+import v3.clientstrong.mainFragments.WorkoutsListFragment;
 
-public class Dashboard extends AppCompatActivity implements MembersListFragment.OnFragmentInteractionListener, Workouts.OnFragmentInteractionListener, Exercises.OnFragmentInteractionListener {
+public class Dashboard extends AppCompatActivity implements MembersListFragment.OnFragmentInteractionListener, WorkoutsListFragment.OnFragmentInteractionListener, ExerciseListFragment.OnFragmentInteractionListener {
 
     private FloatingActionButton mFloatingActionButton;
 
@@ -28,7 +28,7 @@ public class Dashboard extends AppCompatActivity implements MembersListFragment.
         super.onCreate(savedInstanceState);
         String activityTitle = getTitle().toString();
 
-        setContentView(R.layout.dashboard);
+        setContentView(R.layout.activity_dashboard);
         setTitle(activityTitle);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.htab_toolbar);
@@ -44,10 +44,10 @@ public class Dashboard extends AppCompatActivity implements MembersListFragment.
     }
 
     private void setupViewPager(ViewPager viewPager) {
-        ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
+        DashboardViewPagerAdapter adapter = new DashboardViewPagerAdapter(getSupportFragmentManager());
         adapter.addFragment(new MembersListFragment(), "Members");
-        adapter.addFragment(new Workouts(), "Workouts");
-        adapter.addFragment(new Exercises(), "Exercises");
+        adapter.addFragment(new WorkoutsListFragment(), "Workouts");
+        adapter.addFragment(new ExerciseListFragment(), "Exercises");
         viewPager.setAdapter(adapter);
     }
 

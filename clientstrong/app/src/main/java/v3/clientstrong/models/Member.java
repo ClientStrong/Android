@@ -4,7 +4,7 @@ package v3.clientstrong.models;
  * Created by runquest.
  * Date: 2016-10-18
  */
-public class Person {
+public class Member {
 
     public String id;
     public String email;
