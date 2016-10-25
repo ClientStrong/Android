@@ -1,6 +1,6 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools" tools:context=".activities.ProfileScreen">
+    xmlns:tools="http://schemas.android.com/tools" tools:context=".activities.MembersProfile">
     <item android:id="@+id/action_call"
         android:icon="@drawable/ic_phone"
         android:orderInCategory="100"
@@ -11,9 +11,4 @@
         android:orderInCategory="100"
         android:title="Email"
         app:showAsAction="ifRoom" />
-    <!--<item android:id="@+id/action_favorite"-->
-        <!--android:icon="@drawable/ic_star"-->
-        <!--android:orderInCategory="100"-->
-        <!--android:title="Favorite"-->
-        <!--app:showAsAction="ifRoom" />-->
 </menu>
