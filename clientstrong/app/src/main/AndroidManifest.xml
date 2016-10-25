@@ -29,7 +29,7 @@
             android:label="@string/title_activity_main3"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".activities.ProfileScreen"
+            android:name=".activities.MembersProfile"
             android:label="@string/title_activity_profile_screen"
             android:parentActivityName=".activities.Dashboard"
             android:theme="@style/AppTheme.NoActionBar">

@@ -19,9 +19,9 @@ import org.json.JSONArray;
 import java.util.ArrayList;
 
 import v3.clientstrong.R;
-import v3.clientstrong.adapters.MembersAdapter;
-import v3.clientstrong.models.Person;
-import v3.clientstrong.requests.PeopleListRequest;
+import v3.clientstrong.adapters.MembersListAdapter;
+import v3.clientstrong.models.Member;
+import v3.clientstrong.requests.MembersListRequest;
 import v3.clientstrong.requests.RequestManager;
 
 /**
@@ -46,7 +46,7 @@ public class MembersListFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        View root = inflater.inflate(R.layout.fragment_members, container, false);
+        View root = inflater.inflate(R.layout.fragment_members_list, container, false);
         mMembersListView = (RecyclerView) root.findViewById(R.id.members_list);
         mMembersListView.setLayoutManager(new LinearLayoutManager(getActivity()));
         mMembersListView.setHasFixedSize(true);
@@ -55,11 +55,12 @@ public class MembersListFragment extends Fragment {
     }
 
     public void requestMemberList(String endPoint) {
-        PeopleListRequest jsObjRequest = new PeopleListRequest(endPoint, new Response.Listener<JSONArray>() {
+        MembersListRequest jsObjRequest = new MembersListRequest(endPoint, new Response.Listener<JSONArray>() {
 
             @Override
             public void onResponse(JSONArray response) {
-                ArrayList<Person> peopleList = new Gson().fromJson(response.toString(), new TypeToken<ArrayList<Person>>(){}.getType());
+                ArrayList<Member> peopleList = new Gson().fromJson(response.toString(),
+                        new TypeToken<ArrayList<Member>>(){}.getType());
                 populateMemberList(peopleList);
             }
         }, new Response.ErrorListener() {
@@ -72,8 +73,8 @@ public class MembersListFragment extends Fragment {
         RequestManager.getInstance(getContext()).addToRequestQueue(jsObjRequest);
     }
 
-    public void populateMemberList(ArrayList<Person> peopleList) {
-        MembersAdapter adapter = new MembersAdapter(this, peopleList, mMembersListView);
+    public void populateMemberList(ArrayList<Member> peopleList) {
+        MembersListAdapter adapter = new MembersListAdapter(this, peopleList, mMembersListView);
         mMembersListView.setAdapter(adapter);
     }
 }

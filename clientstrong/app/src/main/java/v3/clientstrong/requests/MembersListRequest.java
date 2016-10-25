@@ -13,9 +13,9 @@ import java.util.Map;
  * Created by runquest.
  * Date: 2016-10-19
  */
-public class PeopleListRequest extends JsonArrayRequest {
+public class MembersListRequest extends JsonArrayRequest {
 
-    public PeopleListRequest(String endPoint, Response.Listener<JSONArray> listener, Response.ErrorListener errorListener) {
+    public MembersListRequest(String endPoint, Response.Listener<JSONArray> listener, Response.ErrorListener errorListener) {
         super(getURL(endPoint), listener, errorListener);
     }
 

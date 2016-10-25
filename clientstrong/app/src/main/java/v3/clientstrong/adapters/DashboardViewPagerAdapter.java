@@ -12,11 +12,11 @@ import java.util.List;
  * Date: 2016-10-18
  */
 
-public class ViewPagerAdapter extends FragmentPagerAdapter {
+public class DashboardViewPagerAdapter extends FragmentPagerAdapter {
     private final List<Fragment> mFragmentList = new ArrayList<>();
     private final List<String> mFragmentTitleList = new ArrayList<>();
 
-    public ViewPagerAdapter(FragmentManager manager) {
+    public DashboardViewPagerAdapter(FragmentManager manager) {
         super(manager);
     }
 

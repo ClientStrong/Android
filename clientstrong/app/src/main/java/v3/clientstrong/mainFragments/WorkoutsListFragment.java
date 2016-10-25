@@ -13,12 +13,12 @@ import v3.clientstrong.R;
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link Workouts.OnFragmentInteractionListener} interface
+ * {@link WorkoutsListFragment.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link Workouts#newInstance} factory method to
+ * Use the {@link WorkoutsListFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class Workouts extends Fragment {
+public class WorkoutsListFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -30,7 +30,7 @@ public class Workouts extends Fragment {
 
     private OnFragmentInteractionListener mListener;
 
-    public Workouts() {
+    public WorkoutsListFragment() {
         // Required empty public constructor
     }
 
@@ -43,8 +43,8 @@ public class Workouts extends Fragment {
      * @return A new instance of fragment Invoices.
      */
     // TODO: Rename and change types and number of parameters
-    public static Workouts newInstance(String param1, String param2) {
-        Workouts fragment = new Workouts();
+    public static WorkoutsListFragment newInstance(String param1, String param2) {
+        WorkoutsListFragment fragment = new WorkoutsListFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
