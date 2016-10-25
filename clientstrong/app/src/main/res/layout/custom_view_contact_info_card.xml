@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp"
+    tools:showIn="@layout/fragment_profile">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="4dp"
+            android:text="Personal Information"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginBottom="4dp"
+            android:layout_marginTop="1dp"
+            android:background="@color/colorPrimaryLight" />
+
+        <v3.clientstrong.customViews.ProfileContactCard
+            android:id="@+id/address"
+            custom:pIcon="@drawable/ic_action_home"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <v3.clientstrong.customViews.ProfileContactCard
+            android:id="@+id/phone"
+            custom:pIcon="@drawable/ic_phone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <v3.clientstrong.customViews.ProfileContactCard
+            android:id="@+id/email"
+            custom:pIcon="@drawable/ic_email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <v3.clientstrong.customViews.ProfileContactCard
+            android:id="@+id/birthday"
+            custom:pIcon="@drawable/ic_cake"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+</android.support.v7.widget.CardView>

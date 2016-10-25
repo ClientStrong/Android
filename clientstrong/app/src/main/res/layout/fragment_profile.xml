@@ -1,0 +1,30 @@
+<android.support.v4.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimaryLight"
+    android:orientation="vertical"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="v3.clientstrong.mainFragments.ProfileFragment"
+    tools:showIn="@layout/activity_profile_screen">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <include layout="@layout/custom_view_member_stats" />
+        <include layout="@layout/custom_view_contact_info_card" />
+        <CalendarView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/calendar_layout_margin" />
+
+        <TextView
+            style="@style/DecisionButton"
+            android:text="@string/btn_todays_workout" />
+
+    </LinearLayout>
+</android.support.v4.widget.NestedScrollView>
