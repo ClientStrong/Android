@@ -1,0 +1,42 @@
+[
+    {
+        "name": "Barbell Squat",
+        "description": "Tasked with getting rid of Snow White, the huntsman realizes he cannot and encourages her to run away from the Evil Queen.",
+        "intensity": 1,
+        "author": 1,
+        "image_url": "http://bbcom.me/1THbemS",
+        "video_url": "https://youtu.be/SW_C1A-rejs"
+    },
+    {
+        "name": "Body Squat",
+        "description": "Tasked with getting rid of Snow White, the huntsman realizes he cannot and encourages her to run away from the Evil Queen.",
+        "intensity": 2,
+        "author": 1,
+        "image_url": "http://bit.ly/1yP9tIu",
+        "video_url": "https://youtu.be/dr8v0dCdbP0"
+    },
+    {
+        "name": "Push Up",
+        "description": "Tasked with getting rid of Snow White, the huntsman realizes he cannot and encourages her to run away from the Evil Queen.",
+        "intensity": 3,
+        "author": 2,
+        "image_url": "http://bit.ly/21WUq1j",
+        "video_url": "https://youtu.be/WpobgeNpOCI"
+    },
+    {
+        "name": "Lunge",
+        "description": "Tasked with getting rid of Snow White, the huntsman realizes he cannot and encourages her to run away from the Evil Queen.",
+        "intensity": 4,
+        "author": 2,
+        "image_url": "http://bit.ly/1RJQhJI",
+        "video_url": "https://youtu.be/D7KaRcUTQeE"
+    },
+    {
+        "name": "Burpee",
+        "description": "Tasked with getting rid of Snow White, the huntsman realizes he cannot and encourages her to run away from the Evil Queen.",
+        "intensity": 5,
+        "author": 2,
+        "image_url": "http://bit.ly/1NhpVvv",
+        "video_url": "https://youtu.be/JZQA08SlJnM"
+    }
+]
