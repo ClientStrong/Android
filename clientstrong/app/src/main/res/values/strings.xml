@@ -13,4 +13,7 @@
     <string name="app_title">Client Strong</string>
     <string name="base_url">https://warm-refuge-4462.herokuapp.com/api/v1/%s</string>
     <string name="btn_todays_workout">Today\'s workout</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

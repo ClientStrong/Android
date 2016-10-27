@@ -1,11 +1,12 @@
 package v3.clientstrong.adapters;
 
 import android.support.v7.widget.RecyclerView;
-import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
+import com.github.javiersantos.bottomdialogs.BottomDialog;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,6 +20,8 @@ import v3.clientstrong.models.Exercise;
  * Date: 2016-10-19
  */
 public class ExerciseListAdapter extends RecyclerView.Adapter<ExerciseListAdapter.ExerciseViewHolder> {
+
+    private static String TAG = ExerciseListAdapter.class.getSimpleName();
 
     private ExerciseListFragment mContext;
     private List<Exercise> mExerciseList;
@@ -46,47 +49,28 @@ public class ExerciseListAdapter extends RecyclerView.Adapter<ExerciseListAdapte
         View itemView = LayoutInflater.
                 from(viewGroup.getContext()).
                 inflate(R.layout.cell_exercise_list, viewGroup, false);
-
         return new ExerciseViewHolder(itemView);
     }
 
-    class ExerciseViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener,
-            View.OnCreateContextMenuListener {
+    class ExerciseViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         TextView mExerciseName;
 
         ExerciseViewHolder(View v) {
             super(v);
             v.setOnClickListener(this);
-            v.setOnCreateContextMenuListener(this);
-
-            mExerciseName = (TextView) v.findViewById(R.id.exercise_name);
-        }
-
-        void setItem(String item) {
-//            mItem = item;
         }
 
         @Override
         public void onClick(View v) {
-//            int itemPosition = mExerciseListView.getChildPosition(v);
-//            Member item = mExerciseList.get(itemPosition);
-//
-//            Intent intent = new Intent(mContext.getActivity(), MembersProfile.class).putExtra(Intent.EXTRA_TEXT, item.id);
-//            mContext.startActivity(intent);
-        }
+            int itemPosition = mExerciseListView.getChildPosition(v);
+            Exercise exerciseItem = mExerciseList.get(itemPosition);
 
-        @Override
-        public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
-//            menu.setHeaderTitle("Select The Action");
-//            menu.add(0, v.getId(), 0, "Call");//groupId, itemId, order, title
-//            menu.add(0, v.getId(), 0, "SMS");
+            new BottomDialog.Builder(mContext.getActivity())
+                    .setTitle(exerciseItem.name)
+                    .setContent(exerciseItem.description)
+                    .setPositiveBackgroundColorResource(R.color.colorAccent)
+                    .setPositiveText("OK")
+                    .show();
         }
     }
-
-//    public Drawable getBackground(boolean favorite) {
-////        int drawable = R.drawable.ic_star_border;
-////        if (favorite)
-////            drawable = R.drawable.ic_star;
-//        return mContext.getResources().getDrawable(drawable);
-//    }
 }
