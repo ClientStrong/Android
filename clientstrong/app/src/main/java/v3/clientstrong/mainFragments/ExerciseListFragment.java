@@ -71,9 +71,6 @@ public class ExerciseListFragment extends Fragment {
         mExerciseListView.setAdapter(adapter);
     }
 
-
-
-
     private boolean isNetworkConnected() {
         ConnectivityManager connectivityManager = (ConnectivityManager) getContext().getSystemService(Context.CONNECTIVITY_SERVICE);
         return connectivityManager.getActiveNetworkInfo() != null;
