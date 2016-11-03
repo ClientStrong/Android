@@ -1,0 +1,195 @@
+[{
+  "id": 1,
+  "name": "Strength number 1",
+  "scheduled_date": "2016-10-24T09:50:04.378Z",
+  "level": "Snow",
+  "description": "Lorem ipsum dolor sit amet, altera aliquip epicurei ne per, legere blandit duo in, idque utamur cu mea. Offendit laboramus reprehendunt at vim. Doctus regione ex mea, id quo dolore legimus pertinacia. Libris aperiri nostrum eu ius. Ad detracto voluptaria nam, reprimique adversarium ut pro.",
+  "elements": [
+    {
+      "type": "warm up",
+      "description": "important",
+      "exercise_ids": [1, 2, 3]
+    },
+    {
+      "type": "strength",
+      "description": "important",
+      "exercise_ids": [1, 2, 3]
+    },
+    {
+      "type": "conditioning",
+      "description": "important",
+      "exercise_ids": [1, 2, 3]
+    },
+    {
+      "type": "cardio",
+      "description": "important",
+      "exercise_ids": [1, 2, 3]
+    },
+    {
+      "type": "flexibility",
+      "description": "important",
+      "exercise_ids": [1, 2, 3]
+    },
+    {
+      "type": "extra",
+      "description": "important",
+      "exercise_ids": [1, 2, 3]
+    }
+  ]
+},
+  {
+    "id": 2,
+    "name": "Strength number 2",
+    "scheduled_date": "2016-10-25T09:50:04.378Z",
+    "level": "Snow",
+    "description": "Lorem ipsum dolor sit amet, altera aliquip epicurei ne per, legere blandit duo in, idque utamur cu mea. Offendit laboramus reprehendunt at vim. Doctus regione ex mea, id quo dolore legimus pertinacia. Libris aperiri nostrum eu ius. Ad detracto voluptaria nam, reprimique adversarium ut pro.",
+    "elements": [
+      {
+        "type": "warm up",
+        "description": "important",
+        "exercise_ids": [1, 2, 3]
+      },
+      {
+        "type": "strength",
+        "description": "important",
+        "exercise_ids": [1, 2, 3]
+      },
+      {
+        "type": "conditioning",
+        "description": "important",
+        "exercise_ids": [1, 2, 3]
+      },
+      {
+        "type": "cardio",
+        "description": "important",
+        "exercise_ids": [1, 2, 3]
+      },
+      {
+        "type": "flexibility",
+        "description": "important",
+        "exercise_ids": [1, 2, 3]
+      },
+      {
+        "type": "extra",
+        "description": "important",
+        "exercise_ids": [1, 2, 3]
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "name": "Strength number 3",
+    "scheduled_date": "2016-10-25T19:50:04.378Z",
+    "level": "Snow",
+    "description": "Lorem ipsum dolor sit amet, altera aliquip epicurei ne per, legere blandit duo in, idque utamur cu mea. Offendit laboramus reprehendunt at vim. Doctus regione ex mea, id quo dolore legimus pertinacia. Libris aperiri nostrum eu ius. Ad detracto voluptaria nam, reprimique adversarium ut pro.",
+    "elements": [
+      {
+        "type": "warm up",
+        "description": "important",
+        "exercise_ids": [1, 2, 3]
+      },
+      {
+        "type": "strength",
+        "description": "important",
+        "exercise_ids": [1, 2, 3]
+      },
+      {
+        "type": "conditioning",
+        "description": "important",
+        "exercise_ids": [1, 2, 3]
+      },
+      {
+        "type": "cardio",
+        "description": "important",
+        "exercise_ids": [1, 2, 3]
+      },
+      {
+        "type": "flexibility",
+        "description": "important",
+        "exercise_ids": [1, 2, 3]
+      },
+      {
+        "type": "extra",
+        "description": "important",
+        "exercise_ids": [1, 2, 3]
+      }
+    ]
+  },
+  {
+    "id": 4,
+    "name": "Strength number 1",
+    "scheduled_date": "2016-10-20T09:50:04.378Z",
+    "level": "Snow",
+    "description": "Lorem ipsum dolor sit amet, altera aliquip epicurei ne per, legere blandit duo in, idque utamur cu mea. Offendit laboramus reprehendunt at vim. Doctus regione ex mea, id quo dolore legimus pertinacia. Libris aperiri nostrum eu ius. Ad detracto voluptaria nam, reprimique adversarium ut pro.",
+    "elements": [
+      {
+        "type": "warm up",
+        "description": "important",
+        "exercise_ids": [1, 2, 3]
+      },
+      {
+        "type": "strength",
+        "description": "important",
+        "exercise_ids": [1, 2, 3]
+      },
+      {
+        "type": "conditioning",
+        "description": "important",
+        "exercise_ids": [1, 2, 3]
+      },
+      {
+        "type": "cardio",
+        "description": "important",
+        "exercise_ids": [1, 2, 3]
+      },
+      {
+        "type": "flexibility",
+        "description": "important",
+        "exercise_ids": [1, 2, 3]
+      },
+      {
+        "type": "extra",
+        "description": "important",
+        "exercise_ids": [1, 2, 3]
+      }
+    ]
+  },
+  {
+    "id": 5,
+    "name": "Strength number 5",
+    "scheduled_date": "2016-10-29T09:50:04.378Z",
+    "level": "Snow",
+    "description": "Lorem ipsum dolor sit amet, altera aliquip epicurei ne per, legere blandit duo in, idque utamur cu mea. Offendit laboramus reprehendunt at vim. Doctus regione ex mea, id quo dolore legimus pertinacia. Libris aperiri nostrum eu ius. Ad detracto voluptaria nam, reprimique adversarium ut pro.",
+    "elements": [
+      {
+        "type": "warm up",
+        "description": "important",
+        "exercise_ids": [1, 2, 3]
+      },
+      {
+        "type": "strength",
+        "description": "important",
+        "exercise_ids": [1, 2, 3]
+      },
+      {
+        "type": "conditioning",
+        "description": "important",
+        "exercise_ids": [1, 2, 3]
+      },
+      {
+        "type": "cardio",
+        "description": "important",
+        "exercise_ids": [1, 2, 3]
+      },
+      {
+        "type": "flexibility",
+        "description": "important",
+        "exercise_ids": [1, 2, 3]
+      },
+      {
+        "type": "extra",
+        "description": "important",
+        "exercise_ids": [1, 2, 3]
+      }
+    ]
+  }]

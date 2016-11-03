@@ -20,7 +20,6 @@ public class Dashboard extends AppCompatActivity implements MembersListFragment.
 
     private FloatingActionButton mFloatingActionButton;
 
-    @Override
     public void onFragmentInteraction(Uri uri) { }
 
     @Override

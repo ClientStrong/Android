@@ -58,6 +58,7 @@ public class ExerciseListAdapter extends RecyclerView.Adapter<ExerciseListAdapte
         ExerciseViewHolder(View v) {
             super(v);
             v.setOnClickListener(this);
+            mExerciseName = (TextView) v.findViewById(R.id.exercise_name);
         }
 
         @Override
