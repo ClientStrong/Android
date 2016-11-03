@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.github.javiersantos.bottomdialogs.BottomDialog;
 
@@ -25,12 +26,12 @@ public class WorkoutListAdapter extends RecyclerView.Adapter<WorkoutListAdapter.
 
     private WorkoutsListFragment mContext;
     private List<Workout> mWorkoutList;
-    private RecyclerView mWorkoutExerciseListView;
+    private RecyclerView mWorkoutListView;
 
     public WorkoutListAdapter(WorkoutsListFragment fragment, ArrayList<Workout> workoutList, RecyclerView workoutListView) {
         this.mContext = fragment;
         this.mWorkoutList = workoutList;
-        this.mWorkoutExerciseListView = workoutListView;
+        this.mWorkoutListView = workoutListView;
     }
 
     @Override
@@ -63,14 +64,21 @@ public class WorkoutListAdapter extends RecyclerView.Adapter<WorkoutListAdapter.
 
         @Override
         public void onClick(View v) {
-            int itemPosition = mWorkoutExerciseListView.getChildPosition(v);
-            Workout exerciseItem = mWorkoutList.get(itemPosition);
+            int itemPosition = mWorkoutListView.getChildPosition(v);
+            Workout workoutItem = mWorkoutList.get(itemPosition);
 
             new BottomDialog.Builder(mContext.getActivity())
-                    .setTitle(exerciseItem.name)
-                    .setContent(exerciseItem.description)
+                    .setTitle(workoutItem.name)
+                    .setContent(workoutItem.description)
                     .setPositiveBackgroundColorResource(R.color.colorAccent)
-                    .setPositiveText("OK")
+                    .setPositiveText("START WORKOUT")
+                    .setNegativeText("DISMISS")
+                    .onPositive(new BottomDialog.ButtonCallback() {
+                        @Override
+                        public void onClick(BottomDialog dialog) {
+                            Toast.makeText(mContext.getActivity(), "success", Toast.LENGTH_SHORT).show();
+                        }
+                    })
                     .show();
         }
     }
