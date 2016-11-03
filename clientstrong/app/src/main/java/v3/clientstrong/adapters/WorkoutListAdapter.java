@@ -10,8 +10,11 @@ import android.widget.Toast;
 import com.github.javiersantos.bottomdialogs.BottomDialog;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
+import github.nisrulz.recyclerviewhelper.RVHAdapter;
+import github.nisrulz.recyclerviewhelper.RVHViewHolder;
 import v3.clientstrong.R;
 import v3.clientstrong.mainFragments.WorkoutsListFragment;
 import v3.clientstrong.models.Workout;
@@ -20,7 +23,7 @@ import v3.clientstrong.models.Workout;
  * Created by runquest.
  * Date: 2016-10-19
  */
-public class WorkoutListAdapter extends RecyclerView.Adapter<WorkoutListAdapter.WorkoutViewHolder> {
+public class WorkoutListAdapter extends RecyclerView.Adapter<WorkoutListAdapter.WorkoutViewHolder> implements RVHAdapter {
 
     private static String TAG = WorkoutListAdapter.class.getSimpleName();
 
@@ -53,7 +56,29 @@ public class WorkoutListAdapter extends RecyclerView.Adapter<WorkoutListAdapter.
         return new WorkoutViewHolder(itemView);
     }
 
-    class WorkoutViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+    @Override
+    public boolean onItemMove(int fromPosition, int toPosition) {
+        swap(fromPosition, toPosition);
+        return false;
+    }
+
+    @Override
+    public void onItemDismiss(int position, int direction) {
+        remove(position);
+    }
+
+    // Helper functions you might want to implement to make changes in the list as an event is fired
+    private void remove(int position) {
+        mWorkoutList.remove(position);
+        notifyItemRemoved(position);
+    }
+
+    private void swap(int firstPosition, int secondPosition) {
+        Collections.swap(mWorkoutList, firstPosition, secondPosition);
+        notifyItemMoved(firstPosition, secondPosition);
+    }
+
+    class WorkoutViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener, RVHViewHolder {
         TextView mWorkoutName;
 
         WorkoutViewHolder(View v) {
@@ -80,6 +105,16 @@ public class WorkoutListAdapter extends RecyclerView.Adapter<WorkoutListAdapter.
                         }
                     })
                     .show();
+        }
+
+        @Override
+        public void onItemSelected(int actionstate) {
+            System.out.println("Item is selected");
+        }
+
+        @Override
+        public void onItemClear() {
+            System.out.println("Item is unselected");
         }
     }
 }
