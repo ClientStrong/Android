@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import v3.clientstrong.R;
@@ -54,6 +55,18 @@ public class MembersListAdapter extends RecyclerView.Adapter<MembersListAdapter.
                 inflate(R.layout.cell_member_list, viewGroup, false);
 
         return new MemberViewHolder(itemView);
+    }
+
+    // Clean all elements of the recycler
+    public void clear() {
+        mMembersList.clear();
+        notifyDataSetChanged();
+    }
+
+    // Add a list of items
+    public void addAll(ArrayList<Member> list) {
+        mMembersList.addAll(list);
+        notifyDataSetChanged();
     }
 
     class MemberViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener,

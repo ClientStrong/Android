@@ -4,6 +4,7 @@ import android.content.Context;
 import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -40,6 +41,8 @@ import v3.clientstrong.requests.RequestManager;
 public class MembersListFragment extends Fragment {
 
     private static RecyclerView mMembersListView;
+    private SwipeRefreshLayout swipeContainer;
+
     public interface OnFragmentInteractionListener { }
 
     @Override
@@ -55,6 +58,28 @@ public class MembersListFragment extends Fragment {
         mMembersListView = (RecyclerView) root.findViewById(R.id.members_list);
         mMembersListView.setLayoutManager(new LinearLayoutManager(getActivity()));
         mMembersListView.setHasFixedSize(true);
+        // Lookup the swipe container view
+        swipeContainer = (SwipeRefreshLayout) root.findViewById(R.id.swipeContainer);
+
+
+
+        swipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                // Your code to refresh the list here.
+                // Make sure you call swipeContainer.setRefreshing(false)
+                // once the network request has completed successfully.
+//                fetchTimelineAsync(0);
+                requestMemberList("members");
+            }
+        });
+
+// Configure the refreshing colors
+        swipeContainer.setColorSchemeResources(android.R.color.holo_blue_bright,
+                android.R.color.holo_green_light,
+                android.R.color.holo_orange_light,
+                android.R.color.holo_red_light);
+
 
         if (isNetworkConnected())
             requestMemberList("members");
@@ -82,11 +107,13 @@ public class MembersListFragment extends Fragment {
                 ArrayList<Member> peopleList = new Gson().fromJson(response.toString(),
                         new TypeToken<ArrayList<Member>>(){}.getType());
                 populateMemberList(peopleList);
+                swipeContainer.setRefreshing(false);
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
                 Log.i(getActivity().getTitle().toString(), "onError: " + error.getMessage());
+                swipeContainer.setRefreshing(false);
             }
         });
 
