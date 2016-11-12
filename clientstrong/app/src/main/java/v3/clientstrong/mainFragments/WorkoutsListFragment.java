@@ -9,6 +9,9 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
@@ -44,6 +47,39 @@ public class WorkoutsListFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        setHasOptionsMenu(true);
+
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+
+        // Set up 1 action button
+        inflater.inflate(R.menu.menu_workouts_action, menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_check:
+                // User chose the "Settings" item, show the app settings UI...
+                Toast.makeText(getActivity(), "Send email", Toast.LENGTH_SHORT).show();
+
+
+
+
+
+                return true;
+
+            default:
+                // If we got here, the user's action was not recognized.
+                // Invoke the superclass to handle it.
+                return super.onOptionsItemSelected(item);
+
+        }
+
     }
 
     @Override
@@ -77,6 +113,7 @@ public class WorkoutsListFragment extends Fragment {
 
         return root;
     }
+
 
     private RVHItemClickListener mRVHItemClickListener = new RVHItemClickListener(getActivity(), new RVHItemClickListener.OnItemClickListener() {
             @Override

@@ -39,7 +39,9 @@ public class RequestManager {
     }
 
     public static String getBaseUrl() {
-        return "https://warm-refuge-4462.herokuapp.com/api/v1/";
+//        return "http://192.168.88.255:8000/api/v1/";
+        return "http://10.0.2.2:3000/api/v1/";
+//        return "https://warm-refuge-4462.herokuapp.com/api/v1/";
     }
 
     public static synchronized RequestManager getInstance(Context context) {
