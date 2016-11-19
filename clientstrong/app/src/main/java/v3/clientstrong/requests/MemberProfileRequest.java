@@ -17,8 +17,11 @@ import java.util.Map;
 
 public class MemberProfileRequest extends JsonObjectRequest {
 
-    public MemberProfileRequest(String endPoint, Response.Listener<JSONObject> listener, Response.ErrorListener errorListener) {
+    private String mToken;
+
+    public MemberProfileRequest(String endPoint, String token, Response.Listener<JSONObject> listener, Response.ErrorListener errorListener) {
         super(Request.Method.GET, getURL(endPoint), null, listener, errorListener);
+        mToken = token;
     }
 
     // Overrides header; necessary to set response type;
@@ -26,8 +29,9 @@ public class MemberProfileRequest extends JsonObjectRequest {
     public Map<String, String> getHeaders() throws AuthFailureError {
         Map<String, String> params = new HashMap<>();
         params.put("Accept", "application/json");
-        String tokenCode = "mVjDPcx1saL6ko4FR7UEaQtt";
-        params.put("Authorization", "Token token=" + tokenCode);
+        //TODO: mToken should be getUserToken from sharedPreferences;
+        String tokenKey = "Token token=\"" + mToken;
+        params.put("Authorization", tokenKey);
         return params;
     }
 
