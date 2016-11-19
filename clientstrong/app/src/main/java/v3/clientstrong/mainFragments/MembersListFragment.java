@@ -29,6 +29,7 @@ import java.io.Reader;
 import java.util.ArrayList;
 
 import v3.clientstrong.R;
+import v3.clientstrong.SessionManager;
 import v3.clientstrong.adapters.MembersListAdapter;
 import v3.clientstrong.models.Member;
 import v3.clientstrong.requests.MembersListRequest;
@@ -39,7 +40,7 @@ import v3.clientstrong.requests.RequestManager;
  * Activities that contain this fragment must implement the
  * {@link MembersListFragment.OnFragmentInteractionListener} interface
  * to handle interaction events.
-// * Use the {@link MembersListFragment#} factory method to
+ // * Use the {@link MembersListFragment#} factory method to
  * create an instance of this fragment.
  */
 public class MembersListFragment extends Fragment {
@@ -78,8 +79,6 @@ public class MembersListFragment extends Fragment {
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);
-
-        // Set up 1 action button
         inflater.inflate(R.menu.menu_members_action, menu);
     }
 
@@ -91,11 +90,7 @@ public class MembersListFragment extends Fragment {
 //                Toast.makeText(getActivity(), "Send email", Toast.LENGTH_SHORT).show();
                 AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
                         getActivity());
-
-                // set title
                 alertDialogBuilder.setTitle("Log out");
-
-                // set dialog message
                 alertDialogBuilder
                         .setMessage("Are you sure you want to log out?")
                         .setCancelable(false)
@@ -103,6 +98,8 @@ public class MembersListFragment extends Fragment {
                             public void onClick(DialogInterface dialog,int id) {
                                 // if this button is clicked, close
                                 // current activity
+                                SessionManager sessionManager = new SessionManager(getActivity());
+                                sessionManager.logoutUser();
                                 getActivity().finish();
                             }
                         })
@@ -114,10 +111,7 @@ public class MembersListFragment extends Fragment {
                             }
                         });
 
-                // create alert dialog
                 AlertDialog alertDialog = alertDialogBuilder.create();
-
-                // show it
                 alertDialog.show();
                 return true;
             default:
@@ -125,7 +119,6 @@ public class MembersListFragment extends Fragment {
                 // Invoke the superclass to handle it.
                 return super.onOptionsItemSelected(item);
         }
-
     }
 
     private void localRequestForFakeData() throws IOException {

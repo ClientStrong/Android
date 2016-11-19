@@ -3,6 +3,7 @@ package v3.clientstrong.activities;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
@@ -23,68 +24,40 @@ import v3.clientstrong.mainFragments.WorkoutsListFragment;
 public class Dashboard extends AppCompatActivity implements MembersListFragment.OnFragmentInteractionListener, WorkoutsListFragment.OnFragmentInteractionListener, ExerciseListFragment.OnFragmentInteractionListener {
 
     private FloatingActionButton mFloatingActionButton;
-    SessionManager sessionManager;
+    SessionManager mSessionManager;
 
     public void onFragmentInteraction(Uri uri) { }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        String activityTitle = getTitle().toString();
+        setTitle(activityTitle);
 
-        sessionManager = new SessionManager(getApplicationContext());
-            String activityTitle = getTitle().toString();
-            sessionManager = new SessionManager(this);
-            Log.i("isUserLoggedIN", String.valueOf(sessionManager.isUserLoggedIn()));
-//            sessionManager.checkLogin();
-
-        if(sessionManager.checkLogin())
+        mSessionManager = new SessionManager(getApplicationContext());
+        mSessionManager = new SessionManager(this);
+        Log.i("isUserLoggedIn ", String.valueOf(mSessionManager.isUserLoggedIn()));
+        if(mSessionManager.checkLogin())
             finish();
 
-        // get user data from session
-        HashMap<String, String> user = sessionManager.getUserDetails();
-
-        // get name
-        String name = user.get(SessionManager.KEY_NAME);
-
-        // get email
+        // get user data from mSessionManager
+        HashMap<String, String> user = mSessionManager.getUserDetails();
+        String name = user.get(SessionManager.KEY_FIRST_NAME);
         String email = user.get(SessionManager.KEY_EMAIL);
-//
-//        // Show user data on activity
-//        lblName.setText(Html.fromHtml("Name: <b>" + name + "</b>"));
-//        lblEmail.setText(Html.fromHtml("Email: <b>" + email + "</b>"));
-//
-//
-//
-
 
         setContentView(R.layout.activity_dashboard);
-            setTitle(activityTitle);
 
-            Toolbar toolbar = (Toolbar) findViewById(R.id.htab_toolbar);
-            ViewPager viewPager = (ViewPager) findViewById(R.id.htab_viewpager);
-            TabLayout tabLayout = (TabLayout) findViewById(R.id.htab_tabs);
-            mFloatingActionButton = (FloatingActionButton) findViewById(R.id.fab);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.htab_toolbar);
+        ViewPager viewPager = (ViewPager) findViewById(R.id.htab_viewpager);
+        TabLayout tabLayout = (TabLayout) findViewById(R.id.htab_tabs);
+        mFloatingActionButton = (FloatingActionButton) findViewById(R.id.fab);
 
-            setSupportActionBar(toolbar);
-            setupViewPager(viewPager);
-            tabLayout.setupWithViewPager(viewPager);
-            viewPager.addOnPageChangeListener(mPageChangeListener);
-            mFloatingActionButton.setOnClickListener(mFloatingActionButtonClickListener);
+        setSupportActionBar(toolbar);
+        setupViewPager(viewPager);
+        tabLayout.setupWithViewPager(viewPager);
+        viewPager.addOnPageChangeListener(mPageChangeListener);
+        mFloatingActionButton.setOnClickListener(mFloatingActionButtonClickListener);
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -106,11 +79,8 @@ public class Dashboard extends AppCompatActivity implements MembersListFragment.
     private View.OnClickListener mFloatingActionButtonClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-
-            sessionManager.logoutUser();
-//
-//            Snackbar.make(v, "Add new member (coming soon)", Snackbar.LENGTH_LONG)
-//                    .setAction("Action", null).show();
+            Snackbar.make(v, "Add new member (coming soon)", Snackbar.LENGTH_LONG)
+                    .setAction("Action", null).show();
         }
     };
 

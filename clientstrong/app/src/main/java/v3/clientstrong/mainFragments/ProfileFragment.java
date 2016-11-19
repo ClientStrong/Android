@@ -16,10 +16,13 @@ import com.google.gson.reflect.TypeToken;
 import org.json.JSONObject;
 
 import v3.clientstrong.R;
+import v3.clientstrong.SessionManager;
 import v3.clientstrong.customViews.ProfileContactCard;
 import v3.clientstrong.models.Member;
 import v3.clientstrong.requests.MemberProfileRequest;
 import v3.clientstrong.requests.RequestManager;
+
+import static v3.clientstrong.SessionManager.KEY_TOKEN;
 
 /**
  * Fragment to display information related to member's profile.
@@ -41,6 +44,13 @@ public class ProfileFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
+        SessionManager sessionManager = new SessionManager(getActivity());
+        String token = sessionManager.getUserDetails().get(KEY_TOKEN);
+
+        Intent intent = getActivity().getIntent();
+        String id = intent.getStringExtra(Intent.EXTRA_TEXT);
+        request("members/" + id, token);
+
         View view = inflater.inflate(R.layout.fragment_profile, container, false);
         mAddress = (ProfileContactCard) view.findViewById(R.id.address);
         mPhone = (ProfileContactCard) view.findViewById(R.id.phone);
@@ -52,16 +62,11 @@ public class ProfileFragment extends Fragment {
         mEmail.setCustomDrawable(getResources().getDrawable(R.drawable.ic_email));
         mBirthday.setCustomDrawable(getResources().getDrawable(R.drawable.ic_cake));
 
-        Intent intent = getActivity().getIntent();
-        String id = intent.getStringExtra(Intent.EXTRA_TEXT);
-
-        request("members/" + id);
-
         return view;
     }
 
-    private void request(String endPoint) {
-        MemberProfileRequest memberProfileRequest = new MemberProfileRequest(endPoint, new Response.Listener<JSONObject>() {
+    private void request(String endPoint, String token) {
+        MemberProfileRequest memberProfileRequest = new MemberProfileRequest(endPoint, token, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
                 Member member = new Gson().fromJson(response.toString(),
@@ -72,6 +77,7 @@ public class ProfileFragment extends Fragment {
             @Override
             public void onErrorResponse(VolleyError error) {
                 Log.i("TAG", error.toString());
+                getActivity().finish();
             }
         });
 
